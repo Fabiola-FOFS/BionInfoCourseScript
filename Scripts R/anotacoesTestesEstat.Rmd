@@ -3,3 +3,150 @@ title: "anotacoesTestesEstat"
 output: html_document
 ---
 
+#Testes parametricos : 
+distribuicao e variancia normal, dados continuos demanda distribuicao normal 
+
+
+
+#Testes nao parametricos :
+distribuicao de uma populacao nao é conhecida 
+
+Exercícios - Testes Paramétricos e Não Paramétricos ⏤ Respostas
+
+Respostas
+*1Questão 1*
+
+Testes paramétricos são indicados quando:
+
+Os dados seguem uma distribuição normal e há homogeneidade de variâncias.(Sua resposta)
+
+*2Questão 2*
+
+Um exemplo clássico de teste paramétrico é:
+
+
+Teste t de Student.
+
+*3Questão 3*
+
+Os testes não paramétricos são usados quando:
+
+Não se pode assumir normalidade nos dados.(Sua resposta)
+
+*4Questão 4*
+
+O teste de Mann-Whitney é um exemplo de:
+
+
+Teste não paramétrico para comparação de dois grupos independentes.
+
+*5Questão 5*
+
+ Uma das vantagens dos testes não paramétricos é:
+
+ Podem ser utilizados com dados ordinais ou não normalmente distribuídos.(Sua resposta)
+ 
+ 
+ ***Testes Estatísticos:***
+ 
+ QUI - QUADRADO : TESTE NÁO PARAMETRICO
+ TEM COMO OBJETIVO TESTAR A ASSOCIACAO ENTRE DUAS VARIÁVEIS QUALITATIVAS (SE POSSUI ALGUMA RELACAO)
+ E MOSTRAR SE HÁ DIFERENCA ENTRE FREQUENCIAS ESPERADAS E OBSERVADAS DE UMA VARIAVEL 
+ TABELA 2X2 
+ CONTAR EM CADA CELULA O NUMERO DE OBSERVACOES 
+ 
+ CONDICOES:
+ 1) duas variaveis categoricas (qualitativas)
+ 2) duas ou mais categorias (grupos) para cada variavel 
+ 3) indepencia das observacoes 
+ 4) Nao pode haver relacao entre os sujeitos em cada grupo (sujeitos nao repetidos - pré/pós teste)
+ 5) as variavies categoricas náo estao emparelhadas (pré/pós teste)
+ 6)tamanho da amostra relativamente grande 
+ 7) frequencia para cada celula - tem de ser pelo menos 1 
+ 8)As frequencias esperadas devem ser de pelo menos 5 para a maioria (80%) das celulas.
+ 
+ muito bom para quantificar observacoes se usa muito no paragrafo de resultados na pesquisa 
+ comparacao entre 2 dois resultados ou desfecho
+ mostra se existem distribuicoes que ocorrem ou nao ao acaso
+ 
+ **Exercícios - Qui-quadrado ⏤ Respostas**
+
+*Questão 1 - O teste do qui-quadrado é mais apropriado para:*
+
+
+ Analisar associações entre variáveis categóricas.(Sua resposta)
+
+----
+Questão 2
+
+*Um pressuposto importante para o uso do teste qui-quadrado é:*
+
+As frequências esperadas não devem ser muito pequenas.(Sua resposta)
+------
+3
+Questão 3
+
+*No teste qui-quadrado, valores altos da estatística indicam:*
+
+
+Maior divergência entre o que foi observado e o que era esperado.
+-----
+4
+Questão 4
+
+*O teste qui-quadrado pode ser utilizado em:*
+
+Tabelas de contingência.
+-----
+Questão 5
+
+*Um valor de p menor que 0,05 no teste qui-quadrado indica:*
+
+Que existe associação significativa entre as variáveis.
+
+
+#teste de Fisher# 
+grupos amostrais menores, e comparacoes de 2x2 apenas 
+
+1) o total das linhas e das colunas sao fixados pelo desenho de estudo
+2) tamanho de amostragem pequeno
+3) nais de 20% das células tem contagens esperadas de celulas inferiores a 5 e nehuma inferior a 1 
+
+o teste de fisher mostra se há distribuicoes que ocorrem ou nao ao acaso, mas pra menos observacoes 
+
+##Exercícios - Teste de Fisher ⏤ Respostas##
+
+Respostas
+*Questão 1*
+
+O teste exato de Fisher é indicado especialmente quando:
+
+ As frequências esperadas em uma tabela 2x2 são muito pequenas.(Sua resposta)
+-----
+2
+*Questão 2*
+
+Uma das principais vantagens do teste de Fisher é:
+
+Ser preciso mesmo com amostras pequenas.(Sua resposta)
+
+3
+*Questão 3*
+
+O teste de Fisher é utilizado principalmente em:
+
+Tabelas 2x2 com variáveis categóricas.(Sua resposta)
+-----
+4
+*Questão 4*
+
+Em comparação com o teste do qui-quadrado, o teste de Fisher:
+
+É mais apropriado para amostras pequenas.(Sua resposta)
+-----
+5
+*Questão 5*
+
+Um valor de p significativo no teste de Fisher indica:
+
+Que há associação significativa entre as variáveis categóricas.(Sua resposta)

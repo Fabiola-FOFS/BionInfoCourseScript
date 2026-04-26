@@ -17,11 +17,6 @@ library(ggplot2)
 
 
 
-
-
-
-
-
 #Help
 library(tidyverse)
 
@@ -50,17 +45,6 @@ rm(list=ls())
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 #Basic commands
 #Basic commands
 #Basic commands
@@ -73,7 +57,7 @@ thi<-4
 print(thi)
 thi
 
-#sum
+#sum clicar cntl + enter
 2+3
 
 #subtraction
@@ -114,13 +98,6 @@ a<-6
 M <- data.frame(a,b)
 print(M)
 M
-
-
-
-
-
-
-
 
 
 
@@ -184,8 +161,6 @@ group_factor<-factor(c('Thiago','Vidotto',"Felipe"),levels=c('Felipe','Thiago',"
 
 
 
-
-
 ##Basic functions
 ##Basic functions
 ##Basic functions
@@ -239,10 +214,13 @@ class(group_numeric)
 
 group_factor<-factor(group,levels=c("Treat2","Treat1"))
 
+#length mostra o tamanho a dimensao 
 length(group_factor)
 dim(group_factor) #no dimensions for vectors
+#dimensao vamos usar para data frame
+#dim pega linha e coluna 
 
-
+#length mostra o tamanho a dimensao 
 c<-"Variable_1"
 mode(c)
 length(c)
@@ -250,139 +228,145 @@ length(c)
 
 d<-TRUE
 e<-FALSE
-f<-NULL
+f<-NULL #apaga
 mode(f)
 length(f)
 
-group_factor<-f
 
 
 
+#Mathematical functions (modulo: programacao em r aula 8)
+
+#log - logaritimo 
+log(2) # tirando o logaritimo de 2 
+vec<-c(3,4,5,5,5,6,7,19) # criando um vetor e tirando o logaritmo
+log(vec) # logaritmo do vetor vec 
+#log(vec,4) -- mudando a base para tirar o logaritmo
 
 
 
-
-
-
-
-
-
-
-
-#Mathematical functions
-
-#log
-log(2)
-vec<-c(3,4,5,5,5,6,7,19)
-log(vec)
-
-#exp
+#exp --- colocando expoente 
 exp(2)
-exp(vec)
+exp(vec) #colocando meu vetor vec e tirando o exponecial
 
-#round
-round(4.345645645,1)
+#round --- arredondando resultados
+round(4.345645645,1) # arredondar pra uma casa após a virgula
+# round(4.345645645,2) # arredondar pra duas casas após a virgula
 
-#mean
-mean(c(3,4,5,5,5,6,7,50))
+#mean --- média 
+mean(c(3,4,5,5,5,6,7,50)) # -- media de um conjunto
 mean(c(3,4,5,6,6,7,8,8))
 mean(vec)
 
-#median
+#median -- mediana 
 median(c(3,4,5,5,5,6,7,19))
 median(c(3,1,930,5,40,6,7,3,8,500))
 median(vec)
 
-#quantile
+#quantile -- tirar o quantil de um vetor 
 quantile(c(3,4,5,6,6,7,8,8))
 quantile(vec)
 
-#variance
+#variance --- encontrar a varianca 
 var(c(3,4,5,6,6,7,8,8))
 
-#standard deviation
+#standard deviation  --- desvio padráo
 sd(c(3,4,5,6,6,7,8,8))
 
 
 
 
 
-
-
-
-
-#Data frames
+#Data frames (objeto que é composto por )
+# abir tabelas no R 
 #A data frame is a table composed with one or several vectors and/or 
 #factors all of the same length but possibly of different modes.
 
 
 #open table
-getwd()
+getwd() #descobrir o diretorio atual
 rm(list=ls())
 
-read.table("/Users/thiagovidotto/Downloads/Sheet_STATLAB.txt")
+#funcao para abrir uma tabela de um arquivo
+read.table("/Users/home/Desktop/fabiola/bioInfor/Scripts R/Sheet_STATLAB.txt") #escrever o caminho para o arquivo onde está a tabela os V que aparecem na tabela sao as variaveis
+file.exists("/Users/home/Desktop/fabiola/bioInfor/Scripts R/Sheet_STATLAB.txt") # verificar se o arquivo exite no diretório informado
+read.table("/Users/home/Desktop/fabiola/bioInfor/Scripts R/Sheet_STATLAB.txt",header=TRUE) # coloca o cabecalho da tabela
+read.table("/Users/home/Desktop/fabiola/bioInfor/Scripts R/Sheet_STATLAB.txt",header=TRUE,sep="\t") # acerta dos espacos da tabela, separa as colunas com tab
+read.table("/Users/home/Desktop/fabiola/bioInfor/Scripts R/Sheet_STATLAB.txt",header=TRUE,sep=",") # separa por virgula 
+read.table("/Users/home/Desktop/fabiola/bioInfor/Scripts R/Sheet_STATLAB.txt",header=TRUE,sep=";") #separa por ponto e virgula - util para arquivos excell
 
-read.table("/Users/thiagovidotto/Downloads/Sheet_STATLAB.txt",header=TRUE)
-
-read.table("/Users/thiagovidotto/Downloads/Sheet_STATLAB.txt",header=TRUE,sep="\t")
-
-read.table("/Users/thiagovidotto/Downloads/Sheet_STATLAB.txt",header=TRUE,sep=",")
-
-read.table("/Users/thiagovidotto/Downloads/Sheet_STATLAB.txt",header=TRUE,sep=";")
-
-df<-read.table("/Users/thiagovidotto/Downloads/Sheet_STATLAB.txt",header=TRUE,sep=" ")
-
-
+readLines("/Users/home/Desktop/fabiola/bioInfor/Scripts R/Sheet_STATLAB.txt", n = 5) # verificar que tipo de espacos e separacoes tem na tabela
+read.table("/Users/home/Desktop/fabiola/bioInfor/Scripts R/Sheet_STATLAB.txt",header= TRUE,sep ="") # tabela separado por espaco de quaquer tamanho a tabela do curso é assim
+df<-read.table("/Users/home/Desktop/fabiola/bioInfor/Scripts R/Sheet_STATLAB.txt",header= TRUE,sep ="") #colocando a tabela dentro de df 
 
 
-##
-dim(df)
-names(df)
-colnames(df)
-class(df)
+## funcoes para investigar uma tabela ##
 
-df[80:90,1:5]
-head(df)
-tail(df)
+dim(df) #dimensao da tabela --- linhas x colunas 
+names(df) # retorna os nomes das verificar as variaveis 
+colnames(df) #retorna nomes das colunas x se situar na planilha
+class(df) # mostra o tipo de objeto - neste caso data frame -- obj com duas dimensoes 
 
-df2<-df[1:5,1:5]
+## explorar a planilha de forma visual ##
 
-df[,1:6]
+#df[80:90,1:5] # colchotes para informar o r que quero ver as dimensoes do data frame -- [linhax:linhax , colunax: colunax]linhas , colunas (linha 80 a 90, coluna 1 a 5 )
+df[1:5,1:5] # so nao se pode colocar linhas e colunas que nao existe o tamannho precisa ser dentro do real
+head(df)# mostra o cabecalho das colunas (de cima pra baixo seis)
+tail(df) #mostra os ultimos dados pra cima 
+# *cuidado* : se a planilha possui numeros grandiosos de linhas ou colunas é melhor dimensionar para náo travar o pc 
+
+df2<-df[1:5,1:5] # pego uma parte de um data frame (objeto) e coloco em outro objeto
+df2
+
+### observacao##
+# parentesis se usa para funcao e colchete para dimensao
+df[,1:6] # se nao dimensionar as linhas ele envia todas as linhas 
 df[,1:5]
-df[1:5,]
-df[c(1,8:10),c(1,3,5)]
+df[1:5,] # ver todas as colunas da linha 1 ao 5 de cada coluna
+df[c(1,8:10),c(1,3,5)] # abrir colchote(ver coisas do objeto), abrir conjunto(primeira linha e linhas do 8 ao 10)segundo conjunto colunas
+df$Weight # com o sinal $ se pode pedir para retornar todos os valores de um id, pelo nome da coluna
+df$Sex
 
-df$Weight
-
-class(df$Tobacco)
+class(df$Tobacco) # buscar a classe dos dados da planilha pelo id(coluna) (classe: character, integer)
 class(df$Weight)
+class(df$Weight)<-"numeric" # (mudar o tipo de classe do dado 'pesquisar este náo funcionou')
 
-df$Tobacco<-factor(df$Tobacco,levels=c("Yes","No"))
+df$Tobacco<-factor(df$Tobacco) #busca o tipo de dado factor?
+df$Tobacco<-factor(df$Tobacco,levels=c("Yes","No")) #mudar a ordem, dos fatores
 
-tobacco_yes<-subset(df, Tobacco %in% c("Yes"))
-dim(tobacco_yes)
-mean(df$Weight)
 
-tall_yes<-subset(df, Height >1.8)
-mean(tall_yes$Weight)
+tobacco_yes<-subset(df, Tobacco %in% c("Yes")) #funcao para ver os dados só de quem fuma, uma forma de isolar dados pra um grupo
+#subset pegar um pedaco 
+dim(tobacco_yes) # ver o tamanho da coluna de dados dos fumantes - quantas pessoas fumam 
+mean(df$Weight)#média de todos na planilha 
 
-tall_yes_tobacco_yes<-subset(df, Height >1.8 & Tobacco %in% c("Yes"))
+tall_yes<-subset(df, Height >1.8) #to buscando pessoas acima de 1.8 
+mean(tall_yes$Weight) # média de peso das pessoas altas 
+
+tall_yes_tobacco_yes<-subset(df, Height >1.8 & Tobacco %in% c("Yes")) # %in% 
 dim(tall_yes_tobacco_yes)
 
+#primeira parte é o objeto que estou criando posso colocar um nome que fique claro
 tall_no_tobacco_yes<-subset(df, Height <1.8 & Tobacco %in% c("Yes"))
-dim(tall_no_tobacco_yes)
+dim(tall_no_tobacco_yes) #dimensao destes dados no objeto
 
 df$ID
 df$Race
 df$BMI
 df$Sex
 
-table(df$Race)
-table(df$Race,df$Sex)
+table(df$Race) # contar quanto de cada variavel branco e preto 
+table(df$Race,df$Sex)# conto a quantidade para cada variavel 
+
+
 
 ##transposing
+#transpor 
 
-df_t<-t(df)
+df_t<-t(df) # transpoem linha pra coluna 
+# t(df) ✔️ funciona
+#❌ quebra com dados mistos (texto + número)
+#✔️ use só colunas numéricas ou as.matrix()
 dim(df)
 dim(df_t)
 
@@ -393,132 +377,102 @@ class(df_t)
 df_t<-data.frame(t(df))
 class(df_t)
 
+----
 
+#Modulo Programacao em R --- 4 testes estatisticos em R
+#descriptive statistics 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-df<-read.table("/Users/thiagovidotto/Downloads/Sheet_STATLAB_Treatment.txt",header=TRUE,sep=" ")
-head(df)
+df<-read.table("/Users/home/Desktop/fabiola/bioInfor/Scripts R/Sheet_STATLAB.txt",header=TRUE,sep=" ")
+head(df)# vendo de novo coisas do data frame 
 tail(df)
 df[1:5,1:5]
 
-#descriptive statistics
-median(df$Height)
-mean(df$Height)
-range(df$Height)
+#descriptive statistics # estatistica descritiva  aula 1 
 
+median(df$Height) #mediana das alturas na tabela
+mean(df$Height) # media 
+range(df$Height) #minimo e maximo 
 median(df$Tobacco)
 
+#funcao table para contar quanto em cada coluna
 table(df$Race)
 table(df$Tobacco)
-
 table(df$Race,df$Tobacco)
-table(df$Race,df$Age)
+table(df$Race,df$Age) # obs - usar variavel qualitativa e quantitativa náo é muito util 
 
 #median by group
+#funcao aggregate 
 colnames(df)
-aggregate(df$Height, list(df$Tobacco), median,na.rm=TRUE)
+aggregate(df$Height, list(df$Tobacco), median,na.rm=TRUE) # na.rm=true -- vai remover/ignorar quando náo tiver valor
+# funcao está agregando duas variaveis e pode retirar a media (mesmo sendo uma qualitativa e uma quantitativa)
+aggregate(df$Height, list(df$Tobacco), mean,na.rm=TRUE) #media 
 
-aggregate(df$Height, list(df$Tobacco), mean,na.rm=TRUE) 
+aggregate(df$Height, list(df$Tobacco), range,na.rm=TRUE) #minimo e maximo
 
-aggregate(df$Height, list(df$Tobacco), range,na.rm=TRUE)
+aggregate(df$Height, list(df$Tobacco), quantile,na.rm=TRUE) # quantil
 
-aggregate(df$Height, list(df$Tobacco), quantile,na.rm=TRUE) 
+aggregate(df$Height, list(df$Sex), median,na.rm=TRUE) # mediana
 
-aggregate(df$Height, list(df$Sex), median,na.rm=TRUE) 
+aggregate(df$Height, list(df$Race), mean,na.rm=TRUE)# media 
 
-aggregate(df$Height, list(df$Race), mean,na.rm=TRUE)
-
-
-
-
-
+----
 
 #structure
-str(df)
+str(df) # estrutura da tabela 
 
-install.packages("arsenal")
-library(arsenal)
+install.packages("arsenal") # instalar o pacote arsenal para criar tabelas 
+library(arsenal) # chamar o pacote
 
-colnames(df)
-df_organized <- tableby(Financial_status ~ Sex + Height + IQ +
-                         BMI + Weight + Circumference, data=df)
+colnames(df) # criando objeto com o data frame
+df_organized <- tableby(Race ~ Sex + Height + IQ,data=df) # os dados pego de DF objeto onde estáo os dados
+#cada uma das categorias vao virar linhas
+df_organized <- tableby(Financial_status ~ Sex + Height + IQ + BMI + Weight + Circumference, data=df)
+#fiancial_status neste caso é uma variavel independente afetando as outras variaveis
+# usa a funcao tablery do pacote arsenal para concatenar dados e criar a tabela
+summary(df_organized) # para ver a tabela preciso rodar a funcao sumary em cima do objeto 
+summary(df_organized,text=TRUE) # organizar visualmente melhor 
 
-summary(df_organized)
-summary(df_organized,text=TRUE)
+#observacao#
+# A função `summary()` do pacote arsenal (geralmente usada após `tableby()`) serve para gerar um **resumo descritivo organizado dos dados**, especialmente comparando grupos.
+
+# ela mostra:
+  
+# * médias, medianas, desvio padrão (variáveis numéricas)
+# * contagens e porcentagens (variáveis categóricas, como `race`)
+# * testes estatísticos (p-valor) para comparar grupos
+
+#💡 Ou seja: é uma forma rápida de criar uma **tabela tipo “Tabela 1” de artigo científico**, resumindo e comparando variáveis entre grupos de forma automática.
+----
 
 
-
-
-
-
-
-
-
-
-
-
+### aula 2 - Qui quadrado no R ###
+# testes estatisticos com R #
 
 #Chi-square
-table(df$Race,df$Sex)
+table(df$Race,df$Sex) # criando tabela 2x2 
 
-chisq.test(table(df$Race,df$Sex))
-
+chisq.test(table(df$Race,df$Sex)) #funcao chisq.test - organiza em qui quadrado
+# vai ser analise da distribuicao de raca e genero considerando que nao ha uma diferenca na distribuicao
+# qui quadrado nao é bom pra essa relacao por ter menos de 5 na celula homem x branco = 3 
 chisq.test(table(df$Tobacco,df$Sex))
-
-colnames(df)
-chisq.test(table(df$Tobacco,df$BMI))
-
-
+# neste exemplo da certo e aponta uma diferenca na distribuicao
+colnames(df) # ver os nomes das colunas 
+chisq.test(table(df$Tobacco,df$BMI)) # nao da certo
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+------
 
 
 
 #Fisher
-fisher.test(table(df$Race,df$Sex))
-
-
+# aula 3 modulo testes estatisticos em R 
+# teste fisher preciso ter 
+fisher.test(table(df$Race,df$Sex)) # nao da pq tem mais de 5 observacoes em 1 celula
 fisher.test(table(df$Race,df$Tobacco))
 
+----
 
-
-
-
-
-
-
-
-
-
+#aula de teste estatistico modulo estatistica basica - testes estatisticos
 
 #Shapiro test
 #A significant results indicates that the distribution is NOT normal
