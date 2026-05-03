@@ -49,7 +49,7 @@ Teste não paramétrico para comparação de dois grupos independentes.
  
  ***Testes Estatísticos:***
  
- QUI - QUADRADO : TESTE NÁO PARAMETRICO
+ *QUI - QUADRADO* : TESTE NÁO PARAMETRICO
  TEM COMO OBJETIVO TESTAR A ASSOCIACAO ENTRE DUAS VARIÁVEIS QUALITATIVAS (SE POSSUI ALGUMA RELACAO)
  E MOSTRAR SE HÁ DIFERENCA ENTRE FREQUENCIAS ESPERADAS E OBSERVADAS DE UMA VARIAVEL 
  TABELA 2X2 
@@ -113,6 +113,22 @@ grupos amostrais menores, e comparacoes de 2x2 apenas
 3) nais de 20% das células tem contagens esperadas de celulas inferiores a 5 e nehuma inferior a 1 
 
 o teste de fisher mostra se há distribuicoes que ocorrem ou nao ao acaso, mas pra menos observacoes 
+O teste exato de Fisher (Teste exato de Fisher) é um teste usado para verificar se existe associação entre duas variáveis categóricas, geralmente em tabelas de contingência (como 2x2: “black vs white” × “doente vs saudável”). Ele calcula exatamente a probabilidade de observar aqueles dados sob a hipótese de independência, sendo muito útil quando o tamanho da amostra é pequeno.
+
+👉 Classificação: não paramétrico (não assume distribuição normal dos dados).
+
+A diferença entre o **Teste exato de Fisher** e o **Teste qui-quadrado** está principalmente em **quando usar e como o p-valor é calculado**:
+
+* **Fisher**: calcula o p-valor **exato** e é indicado para **amostras pequenas** ou quando há frequências esperadas baixas (células com valores < 5).
+* **Qui-quadrado**: usa uma **aproximação estatística** e é indicado para **amostras maiores**, onde as frequências esperadas são suficientes.
+
+👉 Ambos servem para testar **associação entre variáveis categóricas** (ex: raça × doença), mas:
+
+* Fisher = mais preciso em dados pequenos
+* Qui-quadrado = mais rápido e comum em dados grandes
+
+**Resumo direto:**
+use Fisher quando os dados são pequenos ou raros; use qui-quadrado quando tem bastante observação.
 
 ##Exercícios - Teste de Fisher ⏤ Respostas##
 
@@ -150,3 +166,397 @@ Em comparação com o teste do qui-quadrado, o teste de Fisher:
 Um valor de p significativo no teste de Fisher indica:
 
 Que há associação significativa entre as variáveis categóricas.(Sua resposta)
+
+````
+#T teste
+parametrico, pressupoem uma distribuicao normal. Procedimento estatistico que compara a média de dois grupos independentes ou nao relacionados para determinar se há uma diferenca significativa entre eles. 
+
+condicoes :
+1) existem dois grupos independentes 
+2) as variaveis sao numericas continuas e segue uma distribuicao normal
+````
+se duas amostras foram obtidas da mesma populacao espera-se que a diferenca entre as medias das duas seja igual a zero
+
+# teorema do limite central
+as medias amostrais seguem uma distribuicao normal . 68% diferenca entre medias de duas amostras esta em a 1 desvio padrao, 95% em 2 desvios 
+
+``````
+teste t - nao pareado
+
+````
+#teste t 
+duas medias da mesma populacao em circunstancias diferentes. 
+
+Exercícios - Teste t ⏤ Respostas
+
+Respostas
+1
+Questão 1
+
+O teste t de Student é utilizado para:
+
+Comparar médias entre dois grupos.(Sua resposta)
+
+2
+Questão 2
+
+O teste t assume que:
+
+ As variáveis têm distribuição normal.(Sua resposta)
+
+3
+Questão 3
+
+O teste t independente é usado quando:
+
+Comparamos dois grupos diferentes.(Sua resposta)
+
+4
+Questão 4
+
+O teste t pareado é indicado quando:
+
+Comparamos o mesmo grupo em dois momentos.(Sua resposta)
+
+5
+Questão 5
+
+ Uma diferença significativa entre médias em um teste t é indicada quando:
+
+ O valor de p é menor que 0,05.
+ '''''
+ 
+ *Teste WILCOXON SIGNED RANK*
+ 
+ Se existir amostras pareadas (ao acaso 2 grupos distintos) em uma distribucao náo parametrica (nao segue uma distribuicao normal) calcular as médias dos grupos,
+ 
+ ###teste###
+ Exercícios - Teste de Wilcoxon ⏤ Respostas
+
+Respostas
+1
+Questão 1
+
+O teste de Wilcoxon é uma alternativa ao teste t quando:
+
+Os dados não seguem distribuição normal.(Sua resposta)
+
+2
+Questão 2
+
+O teste de Wilcoxon pareado é usado para:
+
+Comparar dois conjuntos de dados relacionados.
+
+3
+Questão 3
+
+Uma das principais características do teste de Wilcoxon é que ele:
+
+Usa os postos (ranks) ao invés dos valores brutos.(Sua resposta)
+
+4
+Questão 4
+
+O teste de Wilcoxon pode ser classificado como:
+
+Não paramétrico.(Sua resposta)
+
+5
+Questão 5
+
+Um valor de p menor que 0,05 no teste de Wilcoxon indica:
+
+Que há diferença estatisticamente significativa entre os grupos comparados.(Sua resposta)
+
+***Man WHITNEY / wilcoxon rank-sum***
+nao parametrico também cria rankers, para dados nao pareados (ao contrario do outro que usa dados pareados)
+
+* wilcoxon signed rank = amostras pareadas
+*wilcoxon rank sum {mann whitney} = amostras independentes
+
+condicoes 
+duas amostras independentes com caracteristicas escaladas ordinalmente
+2. náo precisa satisfazer curva de distribuicao 
+
+
+;;;;;;
+
+Exercícios - Teste de Mann-Whitney ⏤ Respostas
+
+
+Respostas
+1
+Questão 1
+
+O teste de Mann-Whitney é usado quando:
+
+ Deseja-se comparar dois grupos independentes sem assumir normalidade.(Sua resposta)
+
+2
+Questão 2
+
+Uma vantagem do teste de Mann-Whitney é que ele:
+
+ É robusto para dados não paramétricos.(Sua resposta)
+
+3
+Questão 3
+
+O teste de Mann-Whitney é uma alternativa não paramétrica ao:
+
+Teste t para amostras independentes.(Sua resposta)
+
+4
+Questão 4
+
+Em vez de médias, o teste de Mann-Whitney compara:
+
+Distribuições dos postos (ranks).
+
+5
+Questão 5
+
+Um valor de p menor que 0,05 no teste de Mann-Whitney sugere:
+
+Que há diferença significativa entre os grupos.(Sua resposta)
+
+
+#Anova#
+
+Anova 1 faror / one-way anova
+usa-se para comparar a média entre pelo menos 3 grupos (usa-se o t independente quando sao dois grupos)
+comparar duas variaveis : a independente é categorica e a dependente é continua 
+# a independente afeta a dependente
+
+vai dar o valor de (P)
+que mostra o valor global dos grupos 
+
+para haviliar a diferenca entre grupos usa-se um teste poshoc por exemplo tukey
+
+**POSHOC***
+TESTE que mostra a diferenca entre grupos individuais, e controla erros do tipo 1 
+
+
+### Anova de 2 fatores ###
+há duas variaveis independentes afetando a variavel dependente
+
+
+---
+
+# 📊 O que é ANOVA?
+
+**ANOVA** (Análise de Variância) é um teste estatístico usado para comparar **médias de grupos**.
+
+👉 Em vez de comparar só dois grupos (como no teste t), ela permite comparar **3 ou mais grupos ao mesmo tempo**.
+
+---
+
+# 🧠 Ideia principal (bem intuitiva)
+
+A ANOVA tenta responder:
+
+> “As diferenças entre as médias dos grupos são reais ou aconteceram por acaso?”
+
+---
+
+# 🔹 ANOVA One-Way (uma via)
+
+## ✅ Quando usar?
+
+Use quando você tem:
+
+* **1 variável independente (um fator)**
+* **3 ou mais grupos**
+* Quer comparar a média entre esses grupos
+
+---
+
+## 🎯 Exemplo simples
+
+Imagine que você quer testar se **3 dietas diferentes** funcionam:
+
+* Dieta A
+* Dieta B
+* Dieta C
+
+Você mede a perda de peso das pessoas.
+
+👉 Pergunta:
+
+> Existe diferença na média de perda de peso entre as dietas?
+
+---
+
+## 📌 Estrutura
+
+* Variável independente: tipo de dieta
+* Variável dependente: peso perdido
+
+---
+
+## 🧪 Como funciona (conceito)
+
+A ANOVA compara:
+
+* variação **entre os grupos**
+* variação **dentro dos grupos**
+
+Se a variação entre grupos for muito maior → há diferença real
+
+---
+
+## 📊 Fórmula central
+
+F = \frac{\text{Variância entre os grupos}}{\text{Variância dentro dos grupos}}
+
+👉 Se o valor de F for alto → provavelmente existe diferença significativa
+
+---
+
+# 🔸 ANOVA Two-Way (duas vias)
+
+Agora fica um pouco mais interessante 👇
+
+---
+
+## ✅ Quando usar?
+
+Use quando você tem:
+
+* **2 variáveis independentes (dois fatores)**
+* Quer analisar:
+
+  1. efeito do fator 1
+  2. efeito do fator 2
+  3. **interação entre eles**
+
+---
+
+## 🎯 Exemplo simples
+
+Você quer estudar o desempenho de alunos baseado em:
+
+* Tipo de ensino: Online / Presencial
+* Tempo de estudo: 1h / 3h
+
+👉 Perguntas:
+
+1. O tipo de ensino influencia?
+2. O tempo de estudo influencia?
+3. **Existe combinação ideal?** (interação)
+
+---
+
+## 📌 Estrutura
+
+* Fator 1: tipo de ensino
+* Fator 2: tempo de estudo
+* Variável dependente: nota do aluno
+
+---
+
+## 🔥 O diferencial da Two-Way
+
+Ela não só compara grupos — ela também responde:
+
+> “O efeito de uma variável depende da outra?”
+
+👉 Exemplo de interação:
+
+* 3h de estudo pode ajudar MUITO no presencial
+* mas não tanto no online
+
+Isso é **interação**.
+
+---
+
+# 🆚 Diferença resumida
+
+| Tipo    | Quantos fatores? | O que analisa          |
+| ------- | ---------------- | ---------------------- |
+| One-Way | 1                | Diferença entre grupos |
+| Two-Way | 2                | Diferença + interação  |
+
+---
+
+# 🧠 Quando usar cada uma?
+
+👉 Use **One-Way** quando:
+
+* Só existe **um fator**
+* Ex: dieta, tipo de remédio, método
+
+👉 Use **Two-Way** quando:
+
+* Existem **dois fatores**
+* Você quer ver influência combinada
+
+---
+
+# ⚠️ Importante (muito cobrado)
+
+ANOVA diz:
+
+✅ “Existe diferença”
+❌ “Qual grupo é diferente”
+
+👉 Para descobrir quais grupos diferem, você usa testes pós-hoc (ex: Tukey)
+
+---
+
+# 🧩 Analogia simples
+
+Imagine:
+
+* One-Way = comparar sabores de pizza 🍕
+* Two-Way = comparar sabor **e** tamanho da pizza
+
+---
+
+# 🚀 Resumão final
+
+* ANOVA = compara médias
+* One-Way = 1 fator
+* Two-Way = 2 fatores + interação
+* Usa variância para decidir se há diferença significativa
+
+---
+
+Exercícios - ANOVA ⏤ Respostas
+
+Respostas
+1
+Questão 1
+
+ A principal finalidade da ANOVA é:
+
+Comparar médias entre três ou mais grupos.(Sua resposta)
+
+2
+Questão 2
+
+Para aplicar a ANOVA, é necessário que:
+
+A variável dependente seja contínua e os grupos independentes.(Sua resposta)
+
+3
+Questão 3
+
+Um valor de p < 0,05 na ANOVA indica:
+
+Que existe diferença significativa entre pelo menos dois grupos.(Sua resposta)
+
+4
+Questão 4
+
+Quando a ANOVA aponta diferença significativa, é recomendável:
+
+Realizar testes post hoc (ex: Tukey).(Sua resposta)
+
+5
+Questão 5
+
+A ANOVA pressupõe que:
+
+As variâncias entre os grupos são homogêneas.(Sua resposta)

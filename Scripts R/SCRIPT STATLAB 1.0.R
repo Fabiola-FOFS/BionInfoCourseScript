@@ -507,20 +507,6 @@ ggdensity(df$Circumference)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #T-test
 
 #independent t-test
@@ -554,13 +540,6 @@ ggplot(df, aes(Sex, IQ))+
 
 ggplot(df, aes(Sex, IQ))+
   geom_violin(aes(fill=Sex))
-
-
-
-
-
-
-
 
 
 
