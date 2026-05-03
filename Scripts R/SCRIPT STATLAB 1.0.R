@@ -477,35 +477,35 @@ fisher.test(table(df$Race,df$Tobacco))
 #Shapiro test
 #A significant results indicates that the distribution is NOT normal
 #P<0.05 = non-normal distribution
-
+#é uma funcao que se roda em uma variavel,  que testa se a distribuicao é normal
 str(df)
-shapiro.test(df$Height)
+shapiro.test(df$Height) #distribuicao nao normal 
 shapiro.test(df$Weight)
-shapiro.test(df$Sex)
-is.numeric(df$Sex)
+shapiro.test(df$Sex) # nao tem como avaliar a distribuicao nao é numerica
+is.numeric(df$Sex) # verificar se é numerico
 
 shapiro.test(df$IQ) #normal distribution
 shapiro.test(df$Circumference) #normal distribution
 
-
-hist(df$Height)
+#hist funcao para criar um grafico de histograma
+hist(df$Height) #mostra o grafico
 hist(df$Weight)
 hist(df$Circumference)
-hist(df$IQ)
+hist(df$IQ) # mostra o grafico - distribuicao normal
 
 
-install.packages("ggpubr")
-library("ggpubr")
-ggdensity(df$IQ)
+install.packages("ggpubr") ## instalando pacote 
+library("ggpubr") # abrir o pacote
+ggdensity(df$IQ) #rodar a funcao do pacote para obter na planilha na coluna um outor tipo de grafico
 
-ggdensity(df$Weight)
+ggdensity(df$Weight) #grafico
 
-ggdensity(df$Height)
+ggdensity(df$Height) #grafico
 
-ggdensity(df$Circumference)
+ggdensity(df$Circumference) #grafico
 
 
-
+--------
 
 #T-test
 
@@ -515,17 +515,62 @@ ggdensity(df$Circumference)
 
 #normality test
 shapiro.test(df$Height) #P<0.05 = not normally distributed
-shapiro.test(df$IQ)
+shapiro.test(df$IQ) # distribuicao normal 
 
-t.test(df$IQ~df$Sex)
+#tomar cuidado pois o teste t pressupoem dados normais, e se nao forem vai levar ao erro 
+
+t.test(df$Height~df$Race) # o R nao diz que nao segue uma distribuicao normal
+t.test(df$IQ~df$Race) # nao há diferenca significativa para qi considerando a raca 
+t.test(df$IQ~df$Sex) #nao ha diferenaca 
 t.test(df$Height~df$Sex)
 
 #summary
-install.packages("dplyr")
-library("dplyr")
+# como sumarizar dados tendo uma média e um desvio padrao
+install.packages("dplyr") #instalando o pacote
+library("dplyr") # abrindo o pacote 
 
-group_by(df, Race) %>%
-  reframe(
+
+group_by(df, Sex) %>% #funcao que agrupa do data frame a coluna + %% que 
+  summarise(
+    count = n(),
+    mean = mean(IQ, na.rm = TRUE),
+    sd = sd(IQ, na.rm = TRUE),
+  )
+## explicação direta, linha por linha:
+
+#👉 **`group_by`**: agrupa o data frame `df` pela coluna `Sex`
+#👉 **`%>%`**: “pipe” → passa o resultado dessa etapa para a próxima função
+---
+# summarise(
+  #  👉 Cria um novo data frame **resumido** (uma linha por grupo)
+---
+  # count = n()
+ # 👉 Conta quantas linhas existem em cada grupo (`Sex`)
+  ---
+#  mean = mean(IQ, na.rm = TRUE),
+  #  👉 Calcula a **média do IQ** por grupo
+  #  👉 `na.rm = TRUE` → ignora valores ausentes (NA)
+---
+# sd = sd(IQ, na.rm = TRUE),
+  # 👉 Calcula o **desvio padrão do IQ** por grupo
+  #👉 Também ignorando NA
+# 👉 Fecha a função `summarise`
+---
+  ## 💡 Resumo simples
+  
+  #  👉 O código:
+  
+  #  * separa os dados por sexo
+  #* e calcula, para cada grupo:
+  #  * quantidade
+  #* média de IQ
+  #* variação (desvio padrão)
+
+----
+
+
+group_by(df, Race) %>% #funcao que agrupa do data framde a coluna + %% que 
+  reframe( # reframe substitue o summarise por reframe 
     count = n(),
     mean = mean(IQ, na.rm = TRUE),
     median = median(IQ, na.rm=TRUE),
@@ -533,27 +578,57 @@ group_by(df, Race) %>%
     range = range(IQ, na.rm=TRUE)
   )
 
-#simple boxplot
+############
+#simple boxplot. #outra funcao 
+# criando graficos de caixas violono e etc 
+
 library(ggplot2)
-ggplot(df, aes(Sex, IQ))+
-  geom_boxplot(aes(fill=Sex))
+ggplot(df, aes(Sex, IQ))+ # ggplot pede que vc chame o que quer ver no grafico
+  geom_boxplot(aes()) # mostra o grafico de caixas 
 
 ggplot(df, aes(Sex, IQ))+
-  geom_violin(aes(fill=Sex))
+  geom_boxplot(aes(fill=Race)) #colore o grafico 
 
+
+ggplot(df, aes(Sex, IQ))+
+  geom_boxplot(aes(fill=sex)) #colore o grafico 
+
+ggplot(df, aes(Sex, IQ))+
+  geom_violin(aes(fill=Sex)) # grafico violino , coloca cor no grafico
 
 
 
 #dependent t-test
 #dependent t-test
 #dependent t-test
+# teste que analisa antes e depois - pareamento
+
+#precisa de uma variavel dependente continua com distribuicao n
 
 #normality test
-shapiro.test(df$IQ) #P<0.05 = not normally distributed
+#P<0.05 = not normally distributed
+shapiro.test(df$IQ) #P maior = 0.99332 - nao rejeita a hipotese nula, distribuicao normal
+shapiro.test(df$Height) # tbmm nao segue distribuicao normal
 
+t.test(df$Height~df$Race)
 t.test(df$IQ~df$Treatment,paired=TRUE) #dependent ~ independent
 
-#summary
+#coluna tratamento nao existe e o script nao roda - aula 6 modulo 4 - testes estatisticos em R 
+#incorpora o doc treatment ao df 
+treatment_df <- read.delim(
+  "/Users/home/Desktop/fabiola/bioInfor/Scripts R/sheet_STATLAB_Treatment.txt",
+  sep = " ",
+  header = TRUE
+)
+
+names(treatment_df) # ver as colunas dentro do doc 
+t.test(IQ ~ Treatment, data = treatment_df) # qi antes e depois do tratamento
+
+df <- merge(df, treatment_df, by = "ID")
+getwd() # em que pasta estou buscando 
+
+
+#summary # tabelinha 
 library("dplyr")
 group_by(df, Treatment) %>%
   summarise(
@@ -569,36 +644,23 @@ ggplot(data=df, aes(Treatment, IQ))+
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #Wilcołxon Signed Rank - Paired data
+# USA-SE QUANDO TEM DADOS PAREADOS - PRA UMA VARIAVEL DEPENDENTE QUE NAO SEGUE DISTRIBUICAO NORMAL 
+#Comparar ranks de 2 grupos em dados pareados 
+
 shapiro.test(df$Height) #P<0.05 = not normally distributed
 
-wilcox.test(df$Height~df$Treatment,paired=TRUE) #not normal data
+wilcox.test(df$Height.x~df$Treatment,paired=TRUE) #not normal data
 
-#https://stats.stackexchange.com/questions/597782/
-#why-does-r-say-cannot-compute-exact-p-values-with-ties-when-i-can-do-it-with-p
+
+#Link de porque aparece a observacao de erro no R
+#https://stats.stackexchange.com/questions/597782/why-does-r-say-cannot-compute-exact-p-values-with-ties-when-i-can-do-it-with-p
 
 #plots
 library(ggplot2)
 
-df$Treatment<-factor(df$Treatment,levels=c("Before","After"))
-
-ggplot(data=df, aes(Treatment, Height))+
+df$Treatment<-factor(df$Treatment,levels=c("Before","After")) # corrige para ser primeiro antes e depois após
+ggplot(data=df, aes(Treatment, Height.x))+
   geom_boxplot(aes(fill=Treatment))
 
 ##table
@@ -606,102 +668,84 @@ library("dplyr")
 group_by(df, Treatment) %>%
   summarise(
     count = n(),
-    median = median(Height, na.rm = TRUE)
+    median = median(Height.x, na.rm = TRUE)
   )
 
 
+# estou usando os nomes das colunas com .x ou .y porque incorporei no Df
+# o doc treatment e ele veio como variavel y. duplicando minhas colunas. possivelmente os casos anteriores vao dar erro por isso 
 
-
-
-
-
-
-
-
-
-
-
+#para dados nao pareados - mais usado
 #Mann-Whitney - Wilcoxon Rank Sum - Unpaired data
-wilcox.test(df$Height~df$Race) #not normal data
+
+names(df)
+wilcox.test(df$Height.x~df$Race.x) # variavel dependente e independente
+#not normal data - nao segue distribuicao normal e os dados nao sao pareados
 
 #plots
 library(ggplot2)
-ggplot(data=df, aes(Race, Height))+
-  geom_boxplot(aes(fill=Race))
+ggplot(data=df, aes(Race.x, Height.x))+
+  geom_boxplot(aes(fill=Race.x))
 
 ##table
 library("dplyr")
-group_by(df, Race) %>%
+group_by(df, Race.x) %>%
   summarise(
     count = n(),
-    median = median(Height, na.rm = TRUE)
+    median = median(Height.x, na.rm = TRUE)
   )
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+######################
 
 
 #Kruskal
+#vemos rankers - teste nao parametrico
+#usamos quando temos um variavel dependente continua que nao segue distribuicao normal e uma variavel independente qualitativa e mais de 3 grupos
 #3 or more groups with not normal data
-table(df$Financial_status)
 
-kruskal.test(df$Height~df$Financial_status)
-aggregate(df$Height, list(df$Financial_status), median,na.rm=TRUE) 
+table(df$Financial_status.x) #o status financeiro é a variavel que possui 3 grupos distintos 
+
+kruskal.test(df$Height.x~df$Financial_status.x) # existe variacao significativa? - sim 
+
+#funcao aggregate = agrupar a média da variavel altura por status e remover/ignorar dados inexistentes
+aggregate(df$Height.x, list(df$Financial_status.x), median,na.rm=TRUE) 
 
 #poshoc Dunn
+#encontramos que há uma diferenca significativa como saber o que é? fazendo o teste pos hoc e ajustando o valor de p
 install.packages("FSA")
 library(FSA)
-df$Financial_status<-factor(df$Financial_status)
-dunnTest(Height ~ Financial_status,data=df,method="bh") 
+df$Financial_status<-factor(df$Financial_status) # coloca o status como fator 
+
+#funcao dunn
+dunnTest(Height.x ~ Financial_status.x,data=df,method="bh") #method - ajuste do valor de p
+# ˜bh˜ metodo Benjamini-Hochberg - para ajustar valor de p 
 
 #plots
 library(ggplot2)
-ggplot(data=df, aes(Financial_status, Height))+
-  geom_boxplot(aes(fill=Financial_status))
+ggplot(data=df, aes(Financial_status.x, Height.x))+
+  geom_boxplot(aes(fill=Financial_status.x))
 
-##table
+##table # tabelinha com media mediana e etc
 library("dplyr")
-group_by(df, Financial_status) %>%
+group_by(df, Financial_status.x) %>%
   summarise(
     count = n(),
-    median = median(Height, na.rm = TRUE)
+    median = median(Height.x, na.rm = TRUE)
   )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#######################
 
 #ANOVA
-
+# Usa-se quando tenho uma variavel dependente continua que segue uma distribuicao normal e uma variavel independente  que tem 3 ou mais grupos
 ##One-way ANOVA
 ##One variable with 3 or more groups with a normally distributed dependent variable
-anova_model<-aov(df$IQ~df$Financial_status)
+
+#funcao Anova
+anova_model<-aov(df$IQ.x~df$Financial_status.x) #vamos colocar o resultado do teste anova dentro do objeto anova model
+#funcao do Anova é aov
+
+
 summary(anova_model)
 
 #Tukey post hoc
