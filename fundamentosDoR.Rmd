@@ -1,0 +1,3285 @@
+---
+title: "fundamentosR"
+output: html_document
+date: "2026-07-26"
+---
+Excelente ideia. Se você pretende usar um notebook de estudos (Obsidian, NotebookLM, Notion, OneNote, etc.), o melhor é criar um material próprio, organizado como um pequeno livro, e complementá-lo com PDFs de referência.
+
+Como seu objetivo é **Estatística usando R**, eu sugiro construir um material em camadas:
+
+1. **Fundamentos da linguagem R** (o idioma)
+2. **Manipulação de dados** (onde se passa 80% do tempo)
+3. **Visualização**
+4. **Estatística**
+5. **Modelagem**
+6. **Exercícios**
+7. **Cheat Sheets**
+
+Eu posso produzir tudo isso aos poucos. No final você terá praticamente um livro próprio.
+
+---
+
+# Módulo 1
+
+# Introdução ao R
+
+## O que é R?
+
+R é uma linguagem de programação criada especificamente para
+
+* Estatística
+* Ciência de Dados
+* Machine Learning
+* Bioinformática
+* Economia
+* Pesquisa científica
+
+Hoje praticamente toda análise estatística pode ser feita em R.
+
+---
+
+# Como o R funciona
+
+Quase tudo em R é um objeto.
+
+```r
+x <- 10
+```
+
+Significa
+
+> Guarde o valor 10 dentro do objeto chamado x.
+
+Depois:
+
+```r
+x
+```
+
+retorna
+
+```
+10
+```
+
+---
+
+## Comentários
+
+```r
+# isto é um comentário
+```
+
+O R ignora tudo após "#".
+
+---
+
+# Tipos de dados
+
+## Número
+
+```r
+idade <- 35
+```
+
+---
+
+## Texto
+
+```r
+nome <- "Maria"
+```
+
+---
+
+## Verdadeiro/Falso
+
+```r
+TRUE
+FALSE
+```
+
+ou
+
+```r
+T
+F
+```
+
+(é preferível usar TRUE/FALSE)
+
+---
+
+## Vetor
+
+O tipo de dado mais importante.
+
+```r
+c(1,2,3,4,5)
+```
+
+A função
+
+```r
+c()
+```
+
+significa
+
+Combine.
+
+Exemplo
+
+```r
+idades <- c(20,25,30)
+```
+
+---
+
+## Sequências
+
+```r
+1:10
+```
+
+gera
+
+```
+1
+2
+3
+...
+10
+```
+
+---
+
+Também:
+
+```r
+seq(0,100,5)
+```
+
+gera
+
+```
+0
+5
+10
+15
+...
+100
+```
+
+---
+
+## Repetições
+
+```r
+rep(1,10)
+```
+
+produz
+
+```
+1 1 1 1 1 1 1 1 1 1
+```
+
+---
+
+# Operadores
+
+```r
++
+-
+*
+/
+^
+```
+
+Exemplo
+
+```r
+3^2
+```
+
+resultado
+
+```
+9
+```
+
+---
+
+Comparação
+
+```r
+==
+!=
+>
+<
+>=
+<=
+```
+
+Exemplo
+
+```r
+idade > 18
+```
+
+---
+
+Operadores lógicos
+
+```r
+&
+|
+!
+```
+
+---
+
+# Objetos mais importantes
+
+## Vetor
+
+```r
+x <- c(2,5,8)
+```
+
+---
+
+## Matriz
+
+```r
+matrix()
+```
+
+Exemplo
+
+```r
+matrix(1:9,nrow=3)
+```
+
+---
+
+## Lista
+
+Pode guardar qualquer coisa.
+
+```r
+list()
+```
+
+---
+
+## Data Frame
+
+É uma tabela.
+
+Exemplo
+
+```r
+dados <- data.frame(
+nome=c("Ana","Pedro"),
+idade=c(20,30)
+)
+```
+
+---
+
+É o objeto mais usado em Estatística.
+
+---
+
+# As funções mais importantes
+
+Toda função usa
+
+```r
+nome(argumentos)
+```
+
+Exemplo
+
+```r
+mean(x)
+```
+
+---
+
+## mean()
+
+Calcula média.
+
+```r
+mean(c(2,4,6))
+```
+
+Resultado
+
+```
+4
+```
+
+---
+
+## median()
+
+Mediana.
+
+---
+
+## sum()
+
+Soma.
+
+---
+
+## min()
+
+Menor valor.
+
+---
+
+## max()
+
+Maior valor.
+
+---
+
+## sd()
+
+Desvio padrão.
+
+---
+
+## var()
+
+Variância.
+
+---
+
+## length()
+
+Quantidade de elementos.
+
+---
+
+## unique()
+
+Valores únicos.
+
+---
+
+## table()
+
+Tabela de frequências.
+
+Exemplo
+
+```r
+table(sexo)
+```
+
+---
+
+## sort()
+
+Ordena.
+
+---
+
+## rank()
+
+Ranking.
+
+---
+
+## which()
+
+Localiza índices.
+
+Exemplo
+
+```r
+which(idade>18)
+```
+
+---
+
+## head()
+
+Mostra primeiras linhas.
+
+```r
+head(dados)
+```
+
+---
+
+## tail()
+
+Últimas linhas.
+
+---
+
+## dim()
+
+Número de linhas e colunas.
+
+---
+
+## nrow()
+
+Número de linhas.
+
+---
+
+## ncol()
+
+Número de colunas.
+
+---
+
+## names()
+
+Nome das colunas.
+
+---
+
+## str()
+
+Provavelmente a função mais usada.
+
+Mostra
+
+* tipo
+* estrutura
+* colunas
+* classes
+
+---
+
+## summary()
+
+Resumo estatístico.
+
+Exemplo
+
+```r
+summary(dados)
+```
+
+---
+
+# Os pacotes mais importantes
+
+## tidyverse
+
+É um conjunto de pacotes.
+
+Instalação
+
+```r
+install.packages("tidyverse")
+```
+
+Carregar
+
+```r
+library(tidyverse)
+```
+
+Inclui
+
+* dplyr
+* ggplot2
+* readr
+* tidyr
+* stringr
+* forcats
+* tibble
+* purrr
+
+É praticamente obrigatório.
+
+---
+
+# dplyr
+
+Pacote para manipulação de tabelas.
+
+É talvez o mais importante de todos.
+
+Principais funções
+
+---
+
+## select()
+
+Seleciona colunas.
+
+```r
+select(dados,nome,idade)
+```
+
+---
+
+## filter()
+
+Filtra linhas.
+
+```r
+filter(dados,idade>18)
+```
+
+---
+
+## arrange()
+
+Ordena.
+
+```r
+arrange(dados,idade)
+```
+
+---
+
+## mutate()
+
+Cria nova coluna.
+
+```r
+mutate(dados,
+idade2=idade*2)
+```
+
+---
+
+## rename()
+
+Renomeia coluna.
+
+---
+
+## summarise()
+
+Resumo.
+
+```r
+summarise(dados,
+media=mean(idade))
+```
+
+---
+
+## group_by()
+
+Agrupa dados.
+
+Muito usada.
+
+```r
+dados %>%
+group_by(sexo)
+```
+
+---
+
+## count()
+
+Conta observações.
+
+---
+
+## distinct()
+
+Remove duplicados.
+
+---
+
+# O operador Pipe
+
+Um dos conceitos mais importantes.
+
+```r
+%>%
+```
+
+ou
+
+```r
+|>
+```
+
+Ele significa
+
+"Passe o resultado para a próxima função."
+
+Exemplo
+
+Sem pipe
+
+```r
+summary(filter(dados,
+idade>20))
+```
+
+Com pipe
+
+```r
+dados %>%
+filter(idade>20) %>%
+summary()
+```
+
+Muito mais legível.
+
+---
+
+# readr
+
+Importação de dados.
+
+Funções
+
+```r
+read_csv()
+```
+
+CSV
+
+---
+
+```r
+read_delim()
+```
+
+Arquivos delimitados.
+
+---
+
+```r
+write_csv()
+```
+
+Salvar CSV.
+
+---
+
+# readxl
+
+Excel.
+
+Instalação
+
+```r
+install.packages("readxl")
+```
+
+Funções
+
+```r
+read_excel()
+```
+
+Lê
+
+* xlsx
+* xls
+
+---
+
+# writexl
+
+Exportar Excel.
+
+```r
+write_xlsx()
+```
+
+---
+
+# openxlsx
+
+Muito usado.
+
+Permite
+
+* criar planilhas
+* formatar
+* criar abas
+* escrever células
+
+---
+
+# janitor
+
+Excelente para limpar tabelas.
+
+Funções
+
+```r
+clean_names()
+```
+
+Transforma
+
+```
+Nome do Paciente
+```
+
+em
+
+```
+nome_do_paciente
+```
+
+---
+
+## tabyl()
+
+Tabela de frequência melhorada.
+
+---
+
+# stringr
+
+Manipulação de texto.
+
+Principais funções
+
+```r
+str_detect()
+```
+
+Procurar texto.
+
+---
+
+```r
+str_replace()
+```
+
+Substituir.
+
+---
+
+```r
+str_extract()
+```
+
+Extrair.
+
+---
+
+```r
+str_split()
+```
+
+Separar.
+
+---
+
+```r
+str_trim()
+```
+
+Remover espaços.
+
+---
+
+# lubridate
+
+Datas.
+
+Funções
+
+```r
+today()
+```
+
+```r
+ymd()
+```
+
+```r
+month()
+```
+
+```r
+year()
+```
+
+```r
+day()
+```
+
+---
+
+# tidyr
+
+Organizar tabelas.
+
+Funções
+
+```r
+pivot_longer()
+```
+
+---
+
+```r
+pivot_wider()
+```
+
+---
+
+```r
+drop_na()
+```
+
+---
+
+```r
+replace_na()
+```
+
+---
+
+# ggplot2
+
+Visualização.
+
+Função principal
+
+```r
+ggplot()
+```
+
+Gráficos
+
+```
+geom_point()
+
+geom_line()
+
+geom_bar()
+
+geom_histogram()
+
+geom_boxplot()
+
+geom_density()
+
+geom_violin()
+```
+
+---
+
+# Estatística
+
+Funções básicas
+
+```r
+mean()
+
+median()
+
+sd()
+
+var()
+
+quantile()
+
+IQR()
+
+cor()
+
+lm()
+
+anova()
+
+t.test()
+
+wilcox.test()
+
+chisq.test()
+
+shapiro.test()
+```
+
+---
+
+# Pacotes importantes para Estatística
+
+| Pacote     | Finalidade                                                   |
+| ---------- | ------------------------------------------------------------ |
+| tidyverse  | Manipulação e visualização de dados                          |
+| dplyr      | Manipulação de tabelas                                       |
+| ggplot2    | Gráficos                                                     |
+| readr      | Importação de arquivos CSV                                   |
+| readxl     | Leitura de arquivos Excel                                    |
+| writexl    | Exportação para Excel                                        |
+| openxlsx   | Manipulação avançada de planilhas Excel                      |
+| janitor    | Limpeza e padronização de dados                              |
+| tidyr      | Organização e transformação de tabelas                       |
+| stringr    | Manipulação de texto                                         |
+| lubridate  | Datas e horários                                             |
+| skimr      | Resumos estatísticos detalhados                              |
+| psych      | Estatística descritiva e psicometria                         |
+| car        | Regressão e testes estatísticos                              |
+| broom      | Organiza resultados de modelos estatísticos                  |
+| survival   | Análise de sobrevivência                                     |
+| caret      | Modelagem preditiva clássica                                 |
+| tidymodels | Ecossistema moderno de modelagem                             |
+| data.table | Manipulação de grandes volumes de dados com alta performance |
+
+# Fluxo típico de uma análise em R
+
+```text
+Importar dados
+        ↓
+Inspecionar (head(), str(), summary())
+        ↓
+Limpar dados (janitor, dplyr, tidyr)
+        ↓
+Transformar variáveis (mutate(), case_when())
+        ↓
+Análise exploratória (summary(), ggplot2)
+        ↓
+Estatística (t.test(), cor(), lm(), anova())
+        ↓
+Exportar resultados (write_csv(), write_xlsx())
+```
+
+# Referências recomendadas
+
+### Livros (gratuitos)
+
+* **R for Data Science (2ª edição)** — Hadley Wickham, Mine Çetinkaya-Rundel e Garrett Grolemund. É a principal referência para aprender manipulação de dados com o ecossistema tidyverse.
+* **Advanced R** — Hadley Wickham. Indicado após dominar o básico da linguagem.
+* **Hands-On Programming with R** — Garrett Grolemund. Excelente introdução à programação em R.
+
+### Documentação oficial
+
+* **The Comprehensive R Archive Network (CRAN)**: [https://cran.r-project.org/](https://cran.r-project.org/)
+* **R Project**: [https://www.r-project.org/](https://www.r-project.org/)
+* **tidyverse**: [https://www.tidyverse.org/](https://www.tidyverse.org/)
+* **RStudio (Posit)**: [https://posit.co/](https://posit.co/)
+
+### Cheat Sheets
+
+A Posit disponibiliza excelentes folhas de consulta rápida (cheat sheets) para:
+
+* dplyr
+* ggplot2
+* tidyr
+* stringr
+* lubridate
+* readr
+* purrr
+
+## Minha proposta para montar seu notebook
+
+Em vez de apenas reunir PDFs, podemos criar um material muito mais útil, organizado como um curso completo. A estrutura poderia ser:
+
+1. **Fundamentos da Linguagem R** (objetos, tipos de dados, funções, operadores)
+2. **Manipulação de Dados** (dplyr, tidyr, pipes, joins, limpeza)
+3. **Importação e Exportação de Dados** (Excel, CSV, bancos de dados)
+4. **Visualização com ggplot2**
+5. **Estatística Descritiva**
+6. **Inferência Estatística**
+7. **Modelos de Regressão**
+8. **Análise de Dados Reais** (estudos de caso)
+9. **Exercícios comentados**
+10. **Cheat Sheets e mapa mental das principais funções**
+
+Perfeito. Acho que essa é a melhor forma de construir um material realmente útil. Em vez de uma apostila "copiada da internet", vamos escrever um **manual de referência**, como um livro didático, organizado para consulta rápida e aprendizado progressivo.
+
+Vou seguir alguns princípios:
+
+* 📖 Escrito para quem está começando.
+* 🎯 Foco em Estatística e Ciência de Dados.
+* 💡 Explicações intuitivas antes da teoria.
+* 🧠 Dicas de memorização.
+* ⚠️ Erros comuns.
+* ✅ Exemplos práticos.
+* 📌 Resumo ao final de cada capítulo.
+* 📝 Exercícios.
+* 🔍 Referências para aprofundamento.
+* 📚 Organização em Markdown (ideal para Obsidian, NotebookLM, Notion etc.).
+
+A ideia é que, ao final, você tenha um material equivalente a um pequeno livro de R aplicado à Estatística.
+
+---
+
+# MÓDULO 1 — Fundamentos da Linguagem R
+
+> **Objetivo:** compreender como o R "pensa", aprender a criar objetos, utilizar funções e trabalhar com os principais tipos de dados. Este módulo é a base para tudo o que vem depois.
+
+---
+
+# Capítulo 1 – O que é R?
+
+## O que é a linguagem R?
+
+R é uma linguagem de programação desenvolvida especificamente para análise de dados, estatística e pesquisa científica.
+
+Ela foi criada por estatísticos, para estatísticos, e hoje é uma das linguagens mais utilizadas em:
+
+* Estatística
+* Ciência de Dados
+* Inteligência Artificial
+* Machine Learning
+* Bioinformática
+* Economia
+* Saúde
+* Pesquisa Científica
+
+Sua maior vantagem é possuir milhares de pacotes desenvolvidos pela comunidade científica, permitindo executar desde análises simples até modelos extremamente complexos.
+
+---
+
+## O que é possível fazer com R?
+
+Com R você pode:
+
+* importar dados do Excel
+* importar bancos SQL
+* ler arquivos CSV
+* limpar dados
+* calcular estatísticas
+* criar gráficos
+* ajustar modelos estatísticos
+* construir modelos preditivos
+* automatizar relatórios
+* gerar dashboards
+* criar mapas
+* desenvolver aplicações web (Shiny)
+
+Em resumo:
+
+> **R transforma dados em informação.**
+
+---
+
+## Como o R trabalha?
+
+A ideia mais importante para entender R é:
+
+> **Tudo em R é um objeto.**
+
+Quase tudo que você cria fica armazenado em um objeto.
+
+Exemplo:
+
+```r
+idade <- 35
+```
+
+Leia isso como:
+
+> Guarde o valor 35 dentro de uma caixa chamada **idade**.
+
+Visualmente:
+
+```
+idade
+ └──► 35
+```
+
+Depois podemos utilizar esse objeto quantas vezes quisermos.
+
+```r
+idade
+```
+
+Resultado:
+
+```
+35
+```
+
+---
+
+# Capítulo 2 – Atribuição de valores
+
+A seta
+
+```r
+<-
+```
+
+é chamada de **operador de atribuição**.
+
+Ela significa:
+
+> Coloque o valor da direita dentro do objeto da esquerda.
+
+Exemplo:
+
+```r
+nome <- "Maria"
+
+altura <- 1.68
+
+peso <- 65
+```
+
+Agora temos três objetos diferentes.
+
+```
+nome → "Maria"
+
+altura → 1.68
+
+peso → 65
+```
+
+Também é possível usar "="
+
+```r
+idade = 30
+```
+
+Porém, a comunidade R recomenda utilizar:
+
+```r
+<-
+```
+
+porque evita ambiguidades dentro das funções.
+
+---
+
+## Nomeando objetos
+
+Boas práticas:
+
+✔
+
+```r
+idade
+
+peso
+
+altura
+```
+
+✔
+
+```r
+peso_paciente
+
+idade_media
+
+valor_total
+```
+
+Evite:
+
+```r
+x1
+
+abc
+
+teste123
+
+aaa
+```
+
+Seis meses depois você não lembrará o significado desses nomes.
+
+---
+
+## Regras para nomes
+
+Podem conter:
+
+* letras
+* números
+* "_"
+
+Não podem começar por número.
+
+Errado:
+
+```r
+2idade
+```
+
+Certo:
+
+```r
+idade2
+```
+
+---
+
+# Capítulo 3 – Comentários
+
+Comentários são ignorados pelo R.
+
+```r
+# Calculando idade média
+```
+
+São essenciais para documentar seu código.
+
+Exemplo:
+
+```r
+# Ler planilha
+dados <- read_excel("pacientes.xlsx")
+
+# Calcular média
+mean(dados$idade)
+```
+
+---
+
+# Capítulo 4 – Tipos de dados
+
+O R trabalha com alguns tipos básicos.
+
+## 1. Numérico
+
+```r
+idade <- 35
+```
+
+Também chamado de *numeric*.
+
+---
+
+## 2. Texto
+
+Chamado de *character*.
+
+```r
+nome <- "Ana"
+```
+
+Sempre entre aspas.
+
+---
+
+## 3. Lógico
+
+Possui apenas dois valores.
+
+```r
+TRUE
+
+FALSE
+```
+
+São utilizados em comparações.
+
+Exemplo:
+
+```r
+idade > 18
+```
+
+Resultado:
+
+```
+TRUE
+```
+
+---
+
+## Descobrindo o tipo de um objeto
+
+A função
+
+```r
+class()
+```
+
+retorna a classe.
+
+```r
+class(nome)
+```
+
+Resultado
+
+```
+character
+```
+
+---
+
+# Capítulo 5 – Vetores
+
+O vetor é o objeto mais importante da linguagem R.
+
+Ele representa uma coleção de valores do mesmo tipo.
+
+Exemplo:
+
+```r
+idades <- c(20,25,30,31,29)
+```
+
+A função
+
+```r
+c()
+```
+
+significa:
+
+> Combine.
+
+Ela junta vários elementos em um único vetor.
+
+Visualmente:
+
+```
+idades
+
+20
+
+25
+
+30
+
+31
+
+29
+```
+
+---
+
+## Acessando elementos
+
+```r
+idades[1]
+```
+
+Resultado
+
+```
+20
+```
+
+Importante:
+
+O R começa a contar em **1**, e não em 0.
+
+```
+1
+
+2
+
+3
+
+4
+
+5
+```
+
+---
+
+## Vários elementos
+
+```r
+idades[2:4]
+```
+
+Resultado
+
+```
+25
+
+30
+
+31
+```
+
+---
+
+## Último elemento
+
+```r
+tail(idades,1)
+```
+
+---
+
+## Primeiro elemento
+
+```r
+head(idades,1)
+```
+
+---
+
+# Capítulo 6 – Operadores matemáticos
+
+Os operadores básicos são:
+
+| Operador | Significado      |
+| -------- | ---------------- |
+| +        | Soma             |
+| -        | Subtração        |
+| *        | Multiplicação    |
+| /        | Divisão          |
+| ^        | Potência         |
+| %%       | Resto da divisão |
+| %/%      | Divisão inteira  |
+
+Exemplos:
+
+```r
+10+5
+
+10-5
+
+10*5
+
+10/5
+
+10^2
+```
+
+---
+
+# Capítulo 7 – Comparações
+
+Os operadores de comparação retornam TRUE ou FALSE.
+
+| Operador | Significado    |
+| -------- | -------------- |
+| ==       | Igual          |
+| !=       | Diferente      |
+| >        | Maior          |
+| <        | Menor          |
+| >=       | Maior ou igual |
+| <=       | Menor ou igual |
+
+Exemplo:
+
+```r
+idade > 18
+```
+
+Resultado
+
+```
+TRUE
+```
+
+---
+
+# Capítulo 8 – Funções
+
+Toda função segue a estrutura:
+
+```r
+nome(argumentos)
+```
+
+Exemplo:
+
+```r
+sqrt(25)
+```
+
+Resultado
+
+```
+5
+```
+
+Outro exemplo:
+
+```r
+mean(c(2,4,6))
+```
+
+Resultado
+
+```
+4
+```
+
+---
+
+## Como descobrir os argumentos?
+
+Digite:
+
+```r
+?mean
+```
+
+ou
+
+```r
+help(mean)
+```
+
+O R abrirá a documentação oficial da função.
+
+---
+
+# Capítulo 9 – As primeiras funções que você deve memorizar
+
+| Função      | Finalidade              |
+| ----------- | ----------------------- |
+| `mean()`    | Média                   |
+| `median()`  | Mediana                 |
+| `sum()`     | Soma                    |
+| `min()`     | Menor valor             |
+| `max()`     | Maior valor             |
+| `sd()`      | Desvio padrão           |
+| `var()`     | Variância               |
+| `length()`  | Quantidade de elementos |
+| `sort()`    | Ordenar                 |
+| `unique()`  | Remover duplicados      |
+| `table()`   | Frequência              |
+| `head()`    | Primeiras linhas        |
+| `tail()`    | Últimas linhas          |
+| `class()`   | Tipo do objeto          |
+| `str()`     | Estrutura do objeto     |
+| `summary()` | Resumo estatístico      |
+
+### Exemplo prático
+
+```r
+idades <- c(20,25,30,35,40)
+
+mean(idades)
+
+median(idades)
+
+max(idades)
+
+min(idades)
+
+length(idades)
+
+summary(idades)
+```
+
+---
+
+# Capítulo 10 – Objetos mais importantes
+
+Ao longo do curso você trabalhará principalmente com estes tipos de objetos:
+
+| Objeto     | Uso principal                                 |
+| ---------- | --------------------------------------------- |
+| Vetor      | Sequência de valores do mesmo tipo            |
+| Matriz     | Dados numéricos em linhas e colunas           |
+| Lista      | Agrupa objetos de diferentes tipos            |
+| Data Frame | Tabela de dados (o mais usado em Estatística) |
+| Tibble     | Versão moderna do Data Frame (tidyverse)      |
+
+> **Memorização:** se você trabalha com planilhas do Excel, pense no **Data Frame** como uma planilha em memória. Cada coluna representa uma variável e cada linha representa uma observação.
+
+---
+
+# Erros comuns de iniciantes
+
+* Esquecer as aspas em textos.
+* Confundir `=` com `==`.
+* Esquecer de carregar um pacote com `library()`.
+* Esquecer de atribuir o resultado de uma operação a um objeto.
+* Misturar números e textos no mesmo vetor sem entender que isso altera o tipo dos dados.
+* Tentar acessar o elemento `0` de um vetor (em R, o primeiro elemento é o `1`).
+
+---
+
+# Dicas para memorizar
+
+1. Pense em um **objeto** como uma caixa.
+2. Pense em um **vetor** como uma coluna do Excel.
+3. Pense em um **Data Frame** como uma planilha inteira.
+4. Toda função segue o padrão `nome(argumentos)`.
+5. Sempre que tiver dúvida sobre uma função, use `?nome_da_funcao`.
+
+---
+
+# Resumo do módulo
+
+Ao concluir este módulo, você deve ser capaz de:
+
+* Explicar o que é a linguagem R.
+* Criar e nomear objetos.
+* Utilizar o operador de atribuição `<-`.
+* Diferenciar números, textos e valores lógicos.
+* Criar vetores e acessar seus elementos.
+* Utilizar operadores matemáticos e de comparação.
+* Chamar funções e consultar sua documentação.
+* Aplicar as principais funções básicas para análise de dados.
+
+---
+
+# Exercícios
+
+1. Crie um objeto chamado `idade` e atribua o valor `28`.
+2. Crie um vetor chamado `notas` com cinco valores à sua escolha.
+3. Calcule a média (`mean()`) e o desvio padrão (`sd()`) do vetor `notas`.
+4. Verifique a classe (`class()`) dos objetos `idade` e `notas`.
+5. Crie um objeto `nome` contendo seu nome e outro `cidade` contendo sua cidade.
+6. Use `summary()` para resumir o vetor `notas`.
+7. Verifique se a média das notas é maior que `7`.
+
+---
+
+# Referências para aprofundamento
+
+* **R for Data Science (2ª edição)** — Hadley Wickham, Mine Çetinkaya-Rundel e Garrett Grolemund (livro gratuito).
+* **Hands-On Programming with R** — Garrett Grolemund (livro gratuito).
+* **Advanced R** — Hadley Wickham (para estudo intermediário/avançado).
+* **The R Language Definition** (manual oficial do R).
+* **CRAN Task Views**, que organizam pacotes por área (estatística, machine learning, econometria, visualização etc.).
+
+---
+
+Excelente. A partir deste módulo começamos a entrar na parte mais importante do R. Se você dominar **estruturas de dados**, aproximadamente **70% da linguagem** ficará muito mais fácil. Quase todos os pacotes (dplyr, ggplot2, tidyr, caret, tidymodels etc.) trabalham diretamente sobre essas estruturas.
+
+---
+
+# MÓDULO 2 — Estruturas de Dados em R
+
+> **Objetivo:** compreender como o R organiza as informações na memória e aprender quando utilizar cada tipo de estrutura de dados.
+
+---
+
+# Introdução
+
+Imagine que você está analisando uma planilha de pacientes.
+
+| Nome  | Idade | Sexo | Peso |
+| ----- | ----- | ---- | ---- |
+| João  | 10    | M    | 34   |
+| Maria | 8     | F    | 28   |
+| Lucas | 12    | M    | 42   |
+
+Essa simples tabela é composta por várias estruturas diferentes.
+
+* Cada coluna é um vetor.
+* Todas as colunas juntas formam um Data Frame.
+* Algumas funções retornam listas.
+* Alguns modelos estatísticos retornam listas complexas.
+* Algumas operações utilizam matrizes.
+
+Ou seja:
+
+> **Toda análise em R consiste em manipular estruturas de dados.**
+
+---
+
+# Visão Geral
+
+Existem cinco estruturas fundamentais:
+
+```
+Objeto
+│
+├── Vetor
+├── Matriz
+├── Lista
+├── Fator
+└── Data Frame
+        │
+        └── Tibble
+```
+
+Neste módulo estudaremos cada uma delas.
+
+---
+
+# Capítulo 1 — Vetores
+
+## O que é um vetor?
+
+Um vetor é uma sequência de elementos do mesmo tipo.
+
+Por exemplo:
+
+```r
+idades <- c(10,12,8,15,9)
+```
+
+Visualmente:
+
+```
+idades
+
+┌────┬────┬────┬────┬────┐
+│10  │12  │8   │15  │9   │
+└────┴────┴────┴────┴────┘
+```
+
+O vetor é o objeto mais utilizado em R.
+
+---
+
+## Criando vetores
+
+### Numéricos
+
+```r
+idades <- c(12,15,18,21)
+```
+
+---
+
+### Texto
+
+```r
+nomes <- c("Ana","Pedro","Carlos")
+```
+
+---
+
+### Lógicos
+
+```r
+ativo <- c(TRUE,FALSE,TRUE)
+```
+
+---
+
+## Todos os elementos precisam ser do mesmo tipo
+
+Correto:
+
+```r
+c(1,2,3)
+```
+
+Correto:
+
+```r
+c("A","B","C")
+```
+
+Misturando tipos:
+
+```r
+c(1,"A",3)
+```
+
+Resultado:
+
+```
+"1"
+
+"A"
+
+"3"
+```
+
+O R converte tudo para texto.
+
+Este comportamento chama-se **coerção automática**.
+
+---
+
+## Descobrindo o tamanho
+
+```r
+length(idades)
+```
+
+Resultado
+
+```
+4
+```
+
+---
+
+## Descobrindo o tipo
+
+```r
+class(idades)
+```
+
+Resultado
+
+```
+numeric
+```
+
+---
+
+# Capítulo 2 — Índices
+
+Cada elemento possui uma posição.
+
+```
+Posição
+
+1   2   3   4   5
+
+10 12  8  15  9
+```
+
+No R, a contagem começa em **1**.
+
+---
+
+## Primeiro elemento
+
+```r
+idades[1]
+```
+
+Resultado
+
+```
+10
+```
+
+---
+
+## Terceiro
+
+```r
+idades[3]
+```
+
+---
+
+## Vários elementos
+
+```r
+idades[c(2,4)]
+```
+
+Resultado
+
+```
+12
+
+15
+```
+
+---
+
+## Intervalo
+
+```r
+idades[2:4]
+```
+
+Resultado
+
+```
+12
+
+8
+
+15
+```
+
+---
+
+## Todos menos um
+
+```r
+idades[-2]
+```
+
+Resultado
+
+```
+10
+
+8
+
+15
+
+9
+```
+
+Muito útil.
+
+---
+
+# Capítulo 3 — Operações Vetoriais
+
+Uma característica marcante do R é operar sobre vetores inteiros.
+
+Em muitas linguagens seria necessário usar um laço (`for`). Em R, basta escrever a operação diretamente.
+
+```r
+idades <- c(10,12,8)
+
+idades + 1
+```
+
+Resultado
+
+```
+11
+
+13
+
+9
+```
+
+---
+
+Multiplicação
+
+```r
+idades*2
+```
+
+Resultado
+
+```
+20
+
+24
+
+16
+```
+
+---
+
+Potência
+
+```r
+idades^2
+```
+
+---
+
+Raiz quadrada
+
+```r
+sqrt(idades)
+```
+
+---
+
+Logaritmo
+
+```r
+log(idades)
+```
+
+---
+
+Valor absoluto
+
+```r
+abs(c(-3,-5,8))
+```
+
+---
+
+# Capítulo 4 — Valores Ausentes (NA)
+
+Na prática, muitos conjuntos de dados possuem informações faltantes.
+
+O R representa esses valores com `NA`.
+
+Exemplo:
+
+```r
+idades <- c(10,12,NA,15)
+```
+
+---
+
+## Problema comum
+
+```r
+mean(idades)
+```
+
+Resultado
+
+```
+NA
+```
+
+---
+
+## Ignorando valores ausentes
+
+```r
+mean(idades,
+na.rm=TRUE)
+```
+
+Resultado
+
+```
+12.33
+```
+
+Esse argumento (`na.rm = TRUE`) aparece em muitas funções estatísticas e deve ser lembrado.
+
+---
+
+## Verificando valores ausentes
+
+```r
+is.na(idades)
+```
+
+Resultado
+
+```
+FALSE
+FALSE
+TRUE
+FALSE
+```
+
+---
+
+## Contando valores ausentes
+
+```r
+sum(is.na(idades))
+```
+
+Resultado
+
+```
+1
+```
+
+---
+
+# Capítulo 5 — Matrizes
+
+Uma matriz é uma tabela onde **todos os elementos possuem o mesmo tipo**.
+
+Criando:
+
+```r
+m <- matrix(1:9,
+nrow=3)
+```
+
+Resultado
+
+```
+1 4 7
+
+2 5 8
+
+3 6 9
+```
+
+---
+
+## Número de linhas
+
+```r
+nrow(m)
+```
+
+---
+
+## Número de colunas
+
+```r
+ncol(m)
+```
+
+---
+
+## Dimensão
+
+```r
+dim(m)
+```
+
+Resultado
+
+```
+3
+
+3
+```
+
+---
+
+## Acessando elementos
+
+Linha 2, coluna 3
+
+```r
+m[2,3]
+```
+
+---
+
+Linha inteira
+
+```r
+m[2,]
+```
+
+---
+
+Coluna inteira
+
+```r
+m[,3]
+```
+
+---
+
+# Capítulo 6 — Listas
+
+A lista é o objeto mais flexível do R.
+
+Ela pode armazenar objetos de tipos diferentes.
+
+```r
+paciente <- list(
+
+nome="Ana",
+
+idade=12,
+
+peso=35.2,
+
+ativo=TRUE
+)
+```
+
+Visualmente
+
+```
+Paciente
+
+├── nome
+
+├── idade
+
+├── peso
+
+└── ativo
+```
+
+---
+
+## Acessando elementos
+
+```r
+paciente$nome
+```
+
+Resultado
+
+```
+Ana
+```
+
+Também funciona:
+
+```r
+paciente[[1]]
+```
+
+---
+
+# Quando listas são utilizadas?
+
+Sempre que uma função precisa devolver várias informações ao mesmo tempo.
+
+Exemplos:
+
+* regressão linear (`lm()`)
+* testes estatísticos (`t.test()`)
+* modelos de machine learning
+* análise de sobrevivência
+* modelos mistos
+
+Todos retornam listas.
+
+---
+
+# Capítulo 7 — Fatores
+
+Fatores representam variáveis categóricas.
+
+Exemplo:
+
+```r
+sexo <- factor(
+
+c("M","F","F","M")
+)
+```
+
+Resultado
+
+```
+M
+
+F
+
+F
+
+M
+```
+
+Mas internamente o R entende que:
+
+> sexo não é texto.
+
+É uma variável categórica.
+
+Isso é extremamente importante em Estatística.
+
+---
+
+## Níveis
+
+```r
+levels(sexo)
+```
+
+Resultado
+
+```
+F
+
+M
+```
+
+---
+
+## Quantidade por categoria
+
+```r
+table(sexo)
+```
+
+Resultado
+
+```
+F 2
+
+M 2
+```
+
+---
+
+# Capítulo 8 — Data Frames
+
+Este é o objeto mais importante da Estatística.
+
+Um Data Frame é uma tabela.
+
+```r
+dados <- data.frame(
+
+nome=c("Ana","Pedro","Lucas"),
+
+idade=c(10,11,9),
+
+sexo=c("F","M","M")
+)
+```
+
+Visualmente
+
+| Nome  | Idade | Sexo |
+| ----- | ----- | ---- |
+| Ana   | 10    | F    |
+| Pedro | 11    | M    |
+| Lucas | 9     | M    |
+
+---
+
+## Estrutura
+
+```r
+str(dados)
+```
+
+Resultado
+
+```
+3 observações
+
+3 variáveis
+```
+
+Além do tipo de cada coluna.
+
+---
+
+## Primeiras linhas
+
+```r
+head(dados)
+```
+
+---
+
+## Últimas
+
+```r
+tail(dados)
+```
+
+---
+
+## Resumo
+
+```r
+summary(dados)
+```
+
+---
+
+## Número de linhas
+
+```r
+nrow(dados)
+```
+
+---
+
+## Número de colunas
+
+```r
+ncol(dados)
+```
+
+---
+
+## Dimensão
+
+```r
+dim(dados)
+```
+
+---
+
+## Nome das colunas
+
+```r
+names(dados)
+```
+
+---
+
+# Acessando colunas
+
+Duas formas muito utilizadas.
+
+### Operador `$`
+
+```r
+dados$idade
+```
+
+---
+
+### Colchetes
+
+```r
+dados["idade"]
+```
+
+ou
+
+```r
+dados[,2]
+```
+
+---
+
+# Capítulo 9 — Tibbles
+
+Os pacotes do **tidyverse** utilizam um tipo especial de tabela chamado **tibble**.
+
+Criando:
+
+```r
+library(tibble)
+
+dados <- tibble(
+
+nome=c("Ana","Pedro"),
+
+idade=c(10,12)
+)
+```
+
+---
+
+## Diferenças entre Data Frame e Tibble
+
+| Data Frame                                           | Tibble                         |
+| ---------------------------------------------------- | ------------------------------ |
+| Estrutura clássica do R                              | Estrutura moderna do tidyverse |
+| Impressão de todas as linhas                         | Exibe apenas uma amostra       |
+| Converte textos em fatores (em versões antigas do R) | Não converte automaticamente   |
+| Menos amigável para grandes tabelas                  | Mais legível e segura          |
+
+Na prática, se você trabalhar com **dplyr** e **ggplot2**, utilizará tibbles na maior parte do tempo.
+
+---
+
+# Capítulo 10 — Escolhendo a estrutura certa
+
+| Estrutura  | Quando usar                                 |
+| ---------- | ------------------------------------------- |
+| Vetor      | Uma única variável                          |
+| Matriz     | Operações matemáticas e álgebra linear      |
+| Lista      | Objetos heterogêneos e resultados complexos |
+| Fator      | Variáveis categóricas                       |
+| Data Frame | Dados tabulares                             |
+| Tibble     | Dados tabulares no ecossistema tidyverse    |
+
+---
+
+# Fluxo de memória
+
+```
+Excel
+
+↓
+
+Data Frame
+
+↓
+
+Cada coluna
+
+↓
+
+Vetor
+
+↓
+
+Cada célula
+
+↓
+
+Valor
+```
+
+Esse fluxo ajuda a entender como o R "enxerga" uma planilha.
+
+---
+
+# Erros comuns
+
+* Misturar tipos em um vetor sem perceber a coerção automática.
+* Esquecer de tratar `NA` antes de calcular estatísticas.
+* Tentar acessar uma coluna inexistente.
+* Confundir listas com data frames.
+* Acessar elementos usando índice `0` (em R o primeiro índice é `1`).
+
+---
+
+# Resumo do módulo
+
+Ao final deste módulo, você deve ser capaz de:
+
+* Criar vetores, matrizes, listas, fatores e data frames.
+* Acessar elementos usando índices e nomes.
+* Entender a diferença entre Data Frame e Tibble.
+* Tratar valores ausentes (`NA`).
+* Identificar a estrutura de dados mais adequada para cada situação.
+
+---
+
+# Exercícios
+
+1. Crie um vetor chamado `alturas` com cinco valores numéricos e calcule sua média.
+2. Crie um vetor contendo três `NA` e utilize `is.na()` e `sum(is.na())` para identificar e contar os valores ausentes.
+3. Crie uma matriz 3×3 usando `matrix()` e pratique o acesso a linhas, colunas e elementos específicos.
+4. Monte uma lista representando um paciente, contendo nome, idade, sexo e peso. Acesse cada item usando o operador `$`.
+5. Crie um fator chamado `escolaridade` com as categorias `"Fundamental"`, `"Médio"` e `"Superior"` e visualize seus níveis com `levels()`.
+6. Construa um `data.frame` com as colunas `nome`, `idade` e `cidade`. Utilize `head()`, `str()`, `summary()`, `nrow()` e `names()` para explorá-lo.
+7. Recrie essa mesma tabela como um `tibble` e compare sua exibição no console.
+
+---
+
+# Leituras recomendadas
+
+* **R for Data Science (2ª edição)** — Capítulos sobre *Vectors*, *Data Frames* e *Tibbles*.
+* Documentação oficial das funções `data.frame()`, `tibble()`, `matrix()`, `list()` e `factor()`.
+* **Advanced R** (Hadley Wickham), especialmente o capítulo sobre *Vectors*, para uma compreensão mais profunda do funcionamento interno da linguagem.
+
+---
+
+Excelente! Este é, na minha opinião, **o módulo mais importante de todo o curso**. Se você dominar o **tidyverse**, especialmente o **dplyr**, será capaz de realizar cerca de **80% das tarefas de manipulação de dados** em R. É por isso que esse módulo será mais detalhado e rico em exemplos práticos.
+
+---
+
+# MÓDULO 3 — Manipulação de Dados com o tidyverse e dplyr
+
+> **Objetivo:** Aprender a importar, explorar, filtrar, transformar e resumir tabelas de dados utilizando o ecossistema **tidyverse**, com foco no pacote **dplyr**.
+
+---
+
+# Introdução
+
+Quando trabalhamos com dados reais, a maior parte do tempo **não é gasta construindo modelos estatísticos**, mas sim preparando os dados.
+
+É comum ouvir a seguinte estimativa em projetos de Ciência de Dados:
+
+| Etapa                     | Tempo aproximado |
+| ------------------------- | ---------------: |
+| Importação dos dados      |               5% |
+| Limpeza e transformação   |       **60–80%** |
+| Análise estatística       |           10–20% |
+| Visualização e relatórios |           10–20% |
+
+Por isso, dominar o **dplyr** é essencial.
+
+---
+
+# O que é o tidyverse?
+
+O **tidyverse** é um conjunto de pacotes criados para trabalhar de forma integrada.
+
+Ao carregar:
+
+```r
+library(tidyverse)
+```
+
+você passa a ter acesso, entre outros, aos seguintes pacotes:
+
+| Pacote  | Finalidade             |
+| ------- | ---------------------- |
+| dplyr   | Manipulação de tabelas |
+| ggplot2 | Gráficos               |
+| tidyr   | Organização de tabelas |
+| readr   | Importação de CSV      |
+| tibble  | Tabelas modernas       |
+| stringr | Manipulação de texto   |
+| forcats | Variáveis categóricas  |
+| purrr   | Programação funcional  |
+
+Na prática, o pacote mais utilizado é o **dplyr**.
+
+---
+
+# O conceito de "Tidy Data"
+
+O tidyverse parte de uma regra simples:
+
+> **Cada linha representa uma observação.**
+
+> **Cada coluna representa uma variável.**
+
+Exemplo:
+
+| Paciente | Idade | Sexo | Peso |
+| -------- | ----- | ---- | ---- |
+| João     | 10    | M    | 35   |
+| Maria    | 8     | F    | 28   |
+| Pedro    | 12    | M    | 42   |
+
+Observe que:
+
+* cada linha = um paciente;
+* cada coluna = uma característica do paciente.
+
+Esse formato facilita todas as análises posteriores.
+
+---
+
+# Exemplo utilizado ao longo do módulo
+
+Vamos trabalhar com a seguinte tabela:
+
+```r
+dados <- tibble(
+  paciente = c("Ana","Bruno","Carlos","Daniela","Eduardo"),
+  idade = c(10,12,9,15,11),
+  sexo = c("F","M","M","F","M"),
+  terapia = c("ABA","TO","ABA","FONO","TO"),
+  sessoes = c(24,18,30,15,20),
+  custo = c(3200,1800,4500,2100,2400)
+)
+```
+
+Visualmente:
+
+| Paciente | Idade | Sexo | Terapia | Sessões | Custo |
+| -------- | ----- | ---- | ------- | ------- | ----: |
+| Ana      | 10    | F    | ABA     | 24      |  3200 |
+| Bruno    | 12    | M    | TO      | 18      |  1800 |
+| Carlos   | 9     | M    | ABA     | 30      |  4500 |
+| Daniela  | 15    | F    | FONO    | 15      |  2100 |
+| Eduardo  | 11    | M    | TO      | 20      |  2400 |
+
+---
+
+# A filosofia do dplyr
+
+Quase todas as operações podem ser resumidas em sete verbos.
+
+| Verbo         | O que faz              |
+| ------------- | ---------------------- |
+| `select()`    | Escolhe colunas        |
+| `filter()`    | Filtra linhas          |
+| `arrange()`   | Ordena                 |
+| `mutate()`    | Cria ou altera colunas |
+| `summarise()` | Resume dados           |
+| `group_by()`  | Agrupa observações     |
+| `count()`     | Conta ocorrências      |
+
+Se você dominar esses sete verbos, já conseguirá resolver grande parte dos problemas de manipulação de dados.
+
+---
+
+# Capítulo 1 — O Pipe
+
+Antes de aprender os verbos, precisamos entender o **pipe**, que é a base do tidyverse.
+
+## Sem pipe
+
+Imagine que queremos calcular um resumo apenas dos pacientes com idade maior que 10.
+
+```r
+summary(
+    filter(
+        dados,
+        idade > 10
+    )
+)
+```
+
+Funciona, mas fica difícil de ler.
+
+---
+
+## Com pipe
+
+```r
+dados %>%
+    filter(idade > 10) %>%
+    summary()
+```
+
+Leia da seguinte forma:
+
+> Pegue `dados` → filtre → envie o resultado para `summary()`.
+
+É exatamente como uma linha de produção.
+
+```
+Dados
+
+↓
+
+Filtrar
+
+↓
+
+Resumo
+```
+
+---
+
+## Pipe nativo
+
+Desde R 4.1 existe também:
+
+```r
+|>
+```
+
+Exemplo:
+
+```r
+dados |>
+    filter(idade > 10) |>
+    summary()
+```
+
+Ambos funcionam.
+
+Na prática:
+
+* `%>%` domina boa parte dos materiais existentes;
+* `|>` é o padrão moderno da linguagem.
+
+É importante conhecer os dois.
+
+---
+
+# Capítulo 2 — select()
+
+Seleciona colunas.
+
+Tabela original:
+
+|Paciente|Idade|Sexo|Terapia|Sessões|Custo|
+
+Queremos apenas:
+
+Paciente
+
+Idade
+
+```r
+dados %>%
+    select(paciente, idade)
+```
+
+Resultado
+
+| Paciente | Idade |
+| -------- | ----- |
+| Ana      | 10    |
+| Bruno    | 12    |
+| Carlos   | 9     |
+
+---
+
+## Removendo colunas
+
+```r
+dados %>%
+    select(-custo)
+```
+
+---
+
+## Selecionando intervalo
+
+```r
+dados %>%
+    select(paciente:sexo)
+```
+
+Seleciona todas as colunas entre paciente e sexo.
+
+---
+
+## Selecionando por padrão
+
+Começam com:
+
+```r
+starts_with("pac")
+```
+
+Terminadas em:
+
+```r
+ends_with("to")
+```
+
+Contêm:
+
+```r
+contains("ida")
+```
+
+Muito útil em tabelas grandes.
+
+---
+
+# Capítulo 3 — filter()
+
+Seleciona linhas.
+
+Pacientes maiores de 10 anos.
+
+```r
+dados %>%
+filter(idade>10)
+```
+
+---
+
+## Duas condições
+
+```r
+dados %>%
+filter(
+
+idade>10,
+
+sexo=="M"
+)
+```
+
+ou
+
+```r
+filter(
+
+idade>10 &
+sexo=="M"
+)
+```
+
+---
+
+## Operadores
+
+| Operador | Significado    |    |
+| -------- | -------------- | -- |
+| `==`     | Igual          |    |
+| `!=`     | Diferente      |    |
+| `>`      | Maior          |    |
+| `<`      | Menor          |    |
+| `>=`     | Maior ou igual |    |
+| `<=`     | Menor ou igual |    |
+| `&`      | E              |    |
+| `        | `              | OU |
+
+---
+
+## Vários valores
+
+```r
+filter(
+
+terapia %in%
+
+c("ABA","TO")
+)
+```
+
+Muito mais elegante do que escrever vários `OR`.
+
+---
+
+# Capítulo 4 — arrange()
+
+Ordena linhas.
+
+Idade crescente
+
+```r
+arrange(dados,idade)
+```
+
+---
+
+Decrescente
+
+```r
+arrange(
+
+dados,
+
+desc(custo)
+)
+```
+
+---
+
+Ordenando por duas colunas
+
+```r
+arrange(
+
+sexo,
+
+idade
+)
+```
+
+Primeiro separa por sexo.
+
+Depois ordena idade.
+
+---
+
+# Capítulo 5 — mutate()
+
+Cria novas colunas.
+
+Exemplo
+
+Valor por sessão.
+
+```r
+dados %>%
+
+mutate(
+
+valor_sessao=
+custo/sessoes
+)
+```
+
+Nova tabela
+
+| Paciente | Valor Sessão |
+| -------- | -----------: |
+| Ana      |       133.33 |
+| Bruno    |          100 |
+
+A tabela original permanece inalterada, a menos que você atribua o resultado a um objeto:
+
+```r
+dados <- dados %>%
+  mutate(valor_sessao = custo / sessoes)
+```
+
+---
+
+## Várias colunas
+
+```r
+mutate(
+
+idade2=idade*2,
+
+idade3=idade+5
+)
+```
+
+---
+
+## case_when()
+
+Extremamente importante.
+
+```r
+dados %>%
+
+mutate(
+
+faixa=
+
+case_when(
+
+idade<10 ~ "Infantil",
+
+idade<=12 ~ "Pré",
+
+TRUE ~ "Adolescente"
+
+)
+)
+```
+
+Resultado
+
+| Idade | Faixa       |
+| ----- | ----------- |
+| 9     | Infantil    |
+| 10    | Pré         |
+| 15    | Adolescente |
+
+É o equivalente moderno a vários `if` encadeados.
+
+---
+
+# Capítulo 6 — summarise()
+
+Resume informações.
+
+Média da idade.
+
+```r
+dados %>%
+
+summarise(
+
+media=mean(idade)
+)
+```
+
+---
+
+Mais de um resumo
+
+```r
+summarise(
+
+media=mean(idade),
+
+dp=sd(idade),
+
+min=min(idade),
+
+max=max(idade)
+)
+```
+
+Resultado
+
+| Média | DP | Min | Max |
+| ----- | -- | --- | --- |
+
+---
+
+# Capítulo 7 — group_by()
+
+A função mais importante do dplyr.
+
+Ela muda completamente o comportamento do `summarise()`.
+
+Sem agrupamento
+
+```r
+summarise(
+
+media=mean(idade)
+)
+```
+
+Resultado
+
+Uma média geral.
+
+---
+
+Agrupando
+
+```r
+dados %>%
+
+group_by(sexo) %>%
+
+summarise(
+
+media=mean(idade)
+)
+```
+
+Resultado
+
+| Sexo | Média |
+| ---- | ----: |
+| F    |  12.5 |
+| M    | 10.67 |
+
+---
+
+Agrupando por terapia
+
+```r
+dados %>%
+
+group_by(terapia) %>%
+
+summarise(
+
+media=mean(custo)
+)
+```
+
+---
+
+Múltiplos agrupamentos
+
+```r
+group_by(
+
+sexo,
+
+terapia
+)
+```
+
+---
+
+# Capítulo 8 — count()
+
+Conta observações.
+
+```r
+dados %>%
+
+count(sexo)
+```
+
+Resultado
+
+| Sexo | n |
+| ---- | - |
+| F    | 2 |
+| M    | 3 |
+
+---
+
+Mais de uma variável
+
+```r
+count(
+
+sexo,
+
+terapia
+)
+```
+
+---
+
+Ordenando
+
+```r
+count(
+
+terapia,
+
+sort=TRUE
+)
+```
+
+---
+
+# Capítulo 9 — distinct()
+
+Remove duplicados.
+
+```r
+dados %>%
+
+distinct(terapia)
+```
+
+Resultado
+
+ABA
+
+TO
+
+FONO
+
+---
+
+# Capítulo 10 — rename()
+
+Renomeia colunas.
+
+```r
+dados %>%
+
+rename(
+
+idade_paciente=idade
+)
+```
+
+---
+
+# Capítulo 11 — Relacionando os verbos
+
+Uma análise real normalmente segue este fluxo:
+
+```r
+dados %>%
+    filter(idade >= 10) %>%
+    select(paciente, terapia, sessoes, custo) %>%
+    mutate(valor_sessao = custo / sessoes) %>%
+    arrange(desc(valor_sessao))
+```
+
+Passo a passo:
+
+1. Filtra pacientes com idade maior ou igual a 10.
+2. Mantém apenas as colunas relevantes.
+3. Cria a coluna `valor_sessao`.
+4. Ordena do maior para o menor valor por sessão.
+
+Essa forma de escrever torna o código muito mais legível do que funções aninhadas.
+
+---
+
+# Boas práticas
+
+* Dê nomes claros às colunas e objetos.
+* Faça uma transformação por linha do pipe sempre que possível.
+* Prefira `case_when()` a vários `ifelse()` aninhados.
+* Use `%in%` quando precisar comparar vários valores.
+* Evite modificar a tabela original sem necessidade; crie novos objetos durante a exploração.
+
+---
+
+# Erros comuns
+
+* Esquecer de carregar o pacote `dplyr` ou `tidyverse`.
+* Usar `=` em vez de `==` dentro do `filter()`.
+* Esquecer de atribuir o resultado de um `mutate()` a um objeto quando deseja manter a nova coluna.
+* Utilizar `summarise()` esperando manter todas as linhas (ele reduz o conjunto de dados).
+* Esquecer que `group_by()` permanece ativo até ser removido com `ungroup()`.
+
+---
+
+# Resumo do módulo
+
+Ao concluir este módulo, você deverá ser capaz de:
+
+* Compreender a filosofia do tidyverse.
+* Utilizar o operador pipe (`%>%` e `|>`).
+* Selecionar colunas com `select()`.
+* Filtrar linhas com `filter()`.
+* Ordenar dados com `arrange()`.
+* Criar e modificar colunas com `mutate()`.
+* Construir variáveis categóricas com `case_when()`.
+* Produzir resumos estatísticos com `summarise()`.
+* Agrupar dados com `group_by()`.
+* Contar ocorrências com `count()`.
+* Remover duplicatas com `distinct()`.
+* Renomear colunas com `rename()`.
+* Encadear operações em pipelines claros e reutilizáveis.
+
+---
+
+# Tabela-resumo das principais funções do dplyr
+
+| Função        | Objetivo              | Retorna                    |
+| ------------- | --------------------- | -------------------------- |
+| `select()`    | Escolher colunas      | Tabela com menos colunas   |
+| `filter()`    | Filtrar linhas        | Tabela com menos linhas    |
+| `arrange()`   | Ordenar linhas        | Tabela ordenada            |
+| `mutate()`    | Criar/alterar colunas | Tabela com novas variáveis |
+| `summarise()` | Resumir dados         | Uma ou poucas linhas       |
+| `group_by()`  | Agrupar observações   | Tabela agrupada            |
+| `count()`     | Contar ocorrências    | Frequências                |
+| `distinct()`  | Remover duplicatas    | Valores únicos             |
+| `rename()`    | Renomear colunas      | Tabela com novos nomes     |
+| `ungroup()`   | Remover agrupamentos  | Tabela sem grupos          |
+
+---
+
+# Exercícios
+
+1. Crie um `tibble` com pelo menos 10 pacientes e as colunas `nome`, `idade`, `sexo`, `terapia`, `sessoes` e `custo`.
+2. Utilize `select()` para manter apenas `nome`, `terapia` e `custo`.
+3. Filtre apenas pacientes do sexo feminino com idade maior que 10 anos.
+4. Ordene a tabela pelo maior custo utilizando `arrange(desc(custo))`.
+5. Crie uma coluna `valor_sessao` dividindo `custo` por `sessoes`.
+6. Crie uma coluna `faixa_etaria` usando `case_when()`.
+7. Calcule a média e o desvio padrão do custo geral.
+8. Calcule a média do custo por terapia utilizando `group_by()` e `summarise()`.
+9. Conte quantos pacientes existem por terapia e por sexo.
+10. Monte um pipeline único que filtre pacientes com idade ≥ 10, crie `valor_sessao`, mantenha apenas `nome`, `terapia` e `valor_sessao` e ordene do maior para o menor valor por sessão.
+
+---
+
+# Leituras recomendadas
+
+* **R for Data Science (2ª edição)** — capítulos sobre *Data Transformation* e *Data Import*.
+* Cheat Sheet oficial do **dplyr** (Posit), excelente para consulta rápida.
+* Documentação oficial das funções `filter()`, `select()`, `mutate()`, `summarise()` e `group_by()`.
+
+---
+
+### O que vem no Módulo 4
+
+No próximo módulo estudaremos **Importação, Exportação e Limpeza de Dados**, aprendendo a trabalhar com arquivos **Excel (`readxl`, `openxlsx`, `writexl`)**, **CSV (`readr`)**, além de técnicas de padronização de nomes de colunas, tratamento de valores ausentes, conversão de tipos e preparação de dados para análises estatísticas. Esse é um conhecimento indispensável para quem trabalha com bases reais, como planilhas de operadoras de saúde, hospitais e pesquisas.
+

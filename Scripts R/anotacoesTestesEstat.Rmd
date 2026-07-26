@@ -560,3 +560,84 @@ Questão 5
 A ANOVA pressupõe que:
 
 As variâncias entre os grupos são homogêneas.(Sua resposta)
+'''''''''''''''''''''''''''
+*Kruskal-Wallis*
+
+teste 
+Exercícios - Teste de Kruskal-Wallis ⏤ Respostas
+
+Respostas
+1
+Questão 1
+
+O teste de Kruskal-Wallis é utilizado quando:
+
+ Há três ou mais grupos independentes e os dados não seguem distribuição normal.(Sua resposta)
+
+2
+Questão 2
+
+O teste de Kruskal-Wallis é uma alternativa não paramétrica ao:
+
+Teste de Mann-Whitney.(Sua resposta)
+
+ANOVA.
+
+3
+Questão 3
+
+O teste de Kruskal-Wallis utiliza qual abordagem para análise dos dados?
+
+Distribuição dos postos (ranks).(Sua resposta)
+
+4
+Questão 4
+
+Se o p-valor no teste de Kruskal-Wallis for menor que 0,05, isso indica:
+
+Que há diferença significativa entre pelo menos dois grupos.(Sua resposta)
+
+5
+Questão 5
+
+Após um resultado significativo no teste de Kruskal-Wallis, recomenda-se:
+
+Realizar testes de comparações múltiplas (ex: Dunn).(Sua resposta)
+
+
+
+'''''''''''''''''''''''''''''
+
+
+Pearson 
+
+Exercícios - Correlações ⏤ Respostas
+
+Respostas
+1
+Questão 1
+
+ A correlação de Pearson é utilizada para:
+
+Medir a associação entre duas variáveis quantitativas contínuas.(Sua resposta)
+
+2
+Questão 2
+
+Quando o coeficiente de correlação de Pearson (r) é igual a -1, isso indica:
+
+Correlação negativa perfeita.(Sua resposta)
+
+3
+Questão 3
+
+A correlação de Spearman é recomendada quando:
+
+Os dados são ordinais ou não seguem distribuição normal.(Sua resposta)
+
+4
+Questão 4
+
+Se duas variáveis possuem r = 0, isso indica:
+
+Que não há correlação linear entre elas.(Sua resposta)

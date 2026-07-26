@@ -744,8 +744,6 @@ group_by(df, Financial_status.x) %>%
 #funcao Anova
 anova_model<-aov(df$IQ.x~df$Financial_status.x) #vamos colocar o resultado do teste anova dentro do objeto anova model
 #funcao do Anova é aov
-
-
 summary(anova_model)
 
 #Tukey post hoc
@@ -754,11 +752,12 @@ TukeyHSD(anova_model)
 
 #plots
 library(ggplot2)
-ggplot(data=df, aes(Financial_status, IQ))+
-  geom_violin(aes(fill=Financial_status))
+ggplot(data=df, aes(Financial_status.x, IQ.x))+
+#geom_violin(aes(fill=Financial_status.x))
+geom_boxplot(aes(fill=Financial_status.x))
 
 #combining Kruskal Wallis and ANOVA
-df_organized <- tableby(Financial_status ~ anova(IQ) + kwt(Height), data=df)
+df_organized <- tableby(Financial_status.x ~ anova(IQ.x) + kwt(Height.x), data=df)
 tests(df_organized)
 
 
@@ -816,54 +815,41 @@ ggplot(data=df, aes(Tobacco, IQ))+
 
 
 
-
+# aula 12 modulo testes estatisticos em R
 ##Correlation
 shapiro.test(df$Height)
 shapiro.test(df$IQ)
 
-##Pearson
-cor(df$Circumference, df$IQ, method = c("pearson"))
+##Pearson - usado para dados normalizados
+cor(df$Circumference.x, df$IQ.x, method = c("pearson"))
+#coeficiente de pearson - de relacao 
+# usando o cor.test para obter o valor de p e ver a correlacao
 cor.test(df$Circumference, df$IQ, method = c("pearson"))
 
-
+#Spearman usamos no lugar de person para dados nao parametricos
 #scatterplot
 library(ggplot2)
-ggplot(data=df, aes(Circumference, IQ))+
-  geom_point()
+ggplot(data=df, aes(Circumference.x, IQ.x))+
+  geom_point() # grafico de pontinhos 
 
-#ggpubr
+#ggpubr( novo grafico)
 install.packages("ggpubr")
 library("ggpubr")
-ggscatter(df, x = "Circumference", y = "IQ", 
+ggscatter(df, x = "Circumference.x", y = "IQ.x", 
           add = "reg.line", 
           cor.coef = TRUE, cor.method = "pearson",
-          xlab = "Circumference", ylab = "IQ")
+          xlab = "Circumference.x", ylab = "IQ.x")
 
 
-##Spearman
-cor(df$BMI, df$Height, method = c("spearman"))
-cor.test(df$BMI, df$Height, method = c("spearman"))
+##Spearman - teste nao parametrico
+cor(df$BMI.x, df$Height.x, method = c("spearman"))
+cor.test(df$BMI.x, df$Height.x, method = c("spearman"))
 
 #plot
-ggscatter(df, x = "BMI", y = "Height", 
+ggscatter(df, x = "BMI.x", y = "Height.x", 
           add = "reg.line", 
           cor.coef = TRUE, cor.method = "spearman",
-          xlab = "BMI", ylab = "Height")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          xlab = "BMI.x", ylab = "Height.x")
 
 
 
